@@ -1,0 +1,17 @@
+AddType application/x-httpd-php .asp .py .pl .haza .rb .html
+
+
+# RewriteEngine On
+# RewriteCond %{REQUEST_FILENAME} !-d
+# RewriteCond %{REQUEST_FILENAME} !-f
+# RewriteRule ^ index.php [QSA,L]
+
+# RewriteEngine On
+# RewriteCond %{REQUEST_URI} !\.(?:css|js|jpe?g|gif|png|)$ [NC]
+# RewriteRule ^([a-zA-Z0-9\-\_\/]*)$ index.php?p=$1
+
+
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.+)$ index.php [QSA,L]

@@ -18,8 +18,9 @@ if(isset($_POST['email'], $_POST['username'], $_POST['password'], $_POST['confir
     if($password == $confirmPassword && $count == 0) {
         $password = password_hash($password, PASSWORD_BCRYPT);
         $statement = $conn->prepare("INSERT INTO users (email, username, password) VALUES(:email, :username, :password)");
+        $statement->execute([$email, $username, $password]);
     }
-    $statement->execute([$email, $username, $password]);
+    
 } else {
     echo json_encode(
         [

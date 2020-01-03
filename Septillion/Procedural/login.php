@@ -18,6 +18,8 @@ if(isset($_POST['email'], $_POST['username'], $_POST['password'])
     $row = $statement->fetch();
     if(password_verify($password, $row['password'])) {
         setcookie('login_status', sha1($username), time() + (86400 * 30), "/", null, null, true); // 86400 = 1 day
+        setcookie('is_admin', 0, time() + (86400 * 30), "/", null, null, true); // 86400 = 1 day
+        if($row['role_id'] == 1) setcookie('is_admin', 1, time() + (86400 * 30), "/", null, null, true); // 86400 = 1 day
     } else {
         echo json_encode(
             [

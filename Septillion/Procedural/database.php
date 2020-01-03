@@ -1,17 +1,19 @@
 <?php
+namespace App\Septillion\Classes;
+use PDO;
+use PDOException;
 
-$host = 'localhost';
-$databaseName = 'blog';
-$databaseUsername = 'hazhir';
-$databasePassword = '';
-$dsn = "pgsql:host=$host;dbname=$databaseName;";
-$options = [
+const DATABASE_USERNAME = 'hazhir';
+const DATABASE_PASSWORD = '';
+const DSN = 'pgsql:host=localhost;dbname=blog;';
+const OPTIONS = [
     PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
     PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
     PDO::ATTR_EMULATE_PREPARES   => false,
 ];
+
 try {
-    $conn = new PDO($dsn, $databaseUsername, $databasePassword, $options);
+    $conn = new PDO(DSN, DATABASE_USERNAME, DATABASE_PASSWORD, OPTIONS);
     // echo "Connected successfully";
 }
 catch(PDOException $e) {
