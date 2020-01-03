@@ -1,3 +1,6 @@
 <?php
 
-echo 'about page';
+use Septillion\Classes\View;
+
+$view = new View();
+$view->renderView(['about page']);

@@ -2,29 +2,31 @@
 
 namespace Septillion\Classes;
 
+
 class View
 {
-    private $params = [];
-
     public function __construct()
     {
         
     }
 
-    public function setParams($params)
+    public function renderView($params, $template = null)
     {
-        foreach($params as $key => $value) {
-            $this->param[$key] = $value;
+        switch($template) {
+            case 'home':
+                echo 'this is home page';
+                echo '<br/>';
+                echo 'no shit!';
+            break;
+            case 'blog':
+                echo 'this is blog page';
+            break;
+            case 'post':
+                echo 'this is post page';
+            break;
+            default:
+                echo '404 not found';
+        break;
         }
-    }
-
-    public function getParams()
-    {
-        return $this->params;
-    }
-
-    public function renderView()
-    {
-        echo 'this is a simple view';
     }
 }

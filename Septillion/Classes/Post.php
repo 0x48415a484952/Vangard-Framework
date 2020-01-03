@@ -9,15 +9,16 @@ class Post
     private $conn;
     private const INSERT_POST_INTO_DATABASE = "INSERT INTO posts (title, article, uri) VALUES(:title, :article, :uri)";
     private const GET_POST_BY_ID_OR_URI = "SELECT * FROM posts WHERE id = :id OR uri = :uri";
+    private const GET_ALL_POSTS = "SELECT * FROM posts";
     protected $title;
     protected $article;
     protected $uri;
     protected $id;
 
-    // public function __construct(PDO $conn)
-    // {
-    //     $this->conn = $conn;
-    // }
+    public function __construct()
+    {
+        $this->conn = DatabaseConnection::getInstance()->getConnection();
+    }
 
     protected function setId($id)
     {
@@ -59,23 +60,29 @@ class Post
         return $this->uri;
     }
 
-    public function writePost($title, $article, $uri)
+    public function insertPost($title, $article, $uri)
     {
         $this->setTitle($title);
         $this->setArticle($article);
         $this->setUri($uri);
-        $this->conn = DatabaseConnection::getInstance()->getConnection();
         $statement = $this->conn->prepare(self::INSERT_POST_INTO_DATABASE);
         $statement->execute([$this->title, $this->article, $this->uri]);
 
     }
 
-    public function renderPostByIdOrUri($id = null, $uri = null)
+    public function getPostByIdOrUri($id = null, $uri = null)
     {
-        $this->conn = DatabaseConnection::getInstance()->getConnection();
         $statement = $this->conn->prepare(self::GET_POST_BY_ID_OR_URI);
         $statement->bindParam(':id', $this->id);
         $statement->bindParam(':uri', $this->uri);
         $statement->execute();
+        return $statement->fetch();
+    }
+
+    public function getAllPosts()
+    {
+        $statement = $this->conn->prepare(self::GET_ALL_POSTS);
+        $statement->execute();
+        return $statement->fetchAll();
     }
 }

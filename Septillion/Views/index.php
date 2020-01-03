@@ -1,3 +1,6 @@
 <?php
 
-echo 'this is the home page';
+use Septillion\Classes\View;
+
+$view = new View();
+$view->renderView(['this is home page'], 'home');

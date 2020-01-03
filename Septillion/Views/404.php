@@ -3,4 +3,4 @@
 use Septillion\Classes\View;
 
 $FourOFour = new View();
-$FourOFour->renderView();
+$FourOFour->renderView(['404 not found']);
