@@ -1,8 +1,7 @@
 <?php
 
 namespace Septillion\Classes;
-use PDO;
-use Septillion\Classes\View;
+use Septillion\Classes\DatabaseConnection;
 
 class Post
 {

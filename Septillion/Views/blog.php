@@ -4,4 +4,4 @@ use Septillion\Classes\View;
 $post = new Post();
 $posts = $post->getAllPosts();
 $view = new View();
-$view->renderView($posts, 'blog');
+$view->renderView($posts);

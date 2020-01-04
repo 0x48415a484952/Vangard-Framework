@@ -1,1 +1,3 @@
-Options All -Indexes
+# Options All -Indexes
+RewriteEngine On
+RewriteRule ^([a-zA-Z0-9\-\_\/]*)$ Septillion/Public/index.php

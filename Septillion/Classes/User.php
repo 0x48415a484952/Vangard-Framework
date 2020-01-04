@@ -2,9 +2,6 @@
 
 namespace Septillion\Classes;
 use Septillion\Classes\DatabaseConnection;
-// use PDO;
-// use Septillion\Classes;
-
 
 class User
 {
@@ -15,10 +12,10 @@ class User
     protected $username;
     protected $password;
 
-    // public function __construct(PDO $conn)
-    // {
-    //     $this->conn = $conn;
-    // }
+    public function __construct()
+    {
+        $this->conn = DatabaseConnection::getInstance()->getConnection();
+    }
 
     public function setEmail($email)
     {
@@ -49,7 +46,6 @@ class User
 
     private function checkForExistingUsers()
     {
-        $this->conn = DatabaseConnection::getInstance()->getConnection();
         $statement = $this->conn->prepare(self::SELECT_USER_FROM_DATABASE);
         $statement->bindParam(':email', $this->email);
         $statement->bindParam(':username', $this->username);
@@ -65,23 +61,10 @@ class User
         $this->setPassword($password);
         $fetchedUser = $this->checkForExistingUsers();
         if(password_verify($this->password, $fetchedUser['password'])) {
-            setcookie('login_status', sha1($username), time() + (86400 * 30), "/", null, null, true); // 86400 = 1 day
-            setcookie('is_admin', 0, time() + (86400 * 30), "/", null, null, true); // 86400 = 1 day
-            if($fetchedUser['role_id'] == 1) setcookie('is_admin', 1, time() + (86400 * 30), "/", null, null, true); // 86400 = 1 day
-            echo json_encode(
-                [
-                    'status' => 'success',
-                    'message' => 'logged in successfully'
-                ]
-            );
-        } else {
-            echo json_encode(
-                [
-                    'status' => 'fail',
-                    'message' => 'your credentials are wrong'
-                ]
-            );
-        } 
+            setcookie('login_status', sha1($username), time() + (86400 * 30), "/", null, null, true);
+            setcookie('is_admin', 0, time() + (86400 * 30), "/", null, null, true);
+            if($fetchedUser['role_id'] == 1) setcookie('is_admin', 1, time() + (86400 * 30), "/", null, null, true);
+        }
     }
 
     public function register($email, $username, $password, $confirmPassword)
@@ -94,19 +77,6 @@ class User
             $this->password = password_hash($this->password, PASSWORD_BCRYPT);
             $statement = $this->conn->prepare(self::INSERT_USER_INTO_DATABASE);
             $statement->execute([$this->email, $this->username, $this->password]);
-            echo json_encode(
-                [
-                    'status' => 'success',
-                    'message' => 'registered successfully'
-                ]
-            );
-        } else {
-            echo json_encode(
-                [
-                    'status' => 'fail',
-                    'message' => 'something went wrong'
-                ]
-            );
-        } 
+        }
     }
 }

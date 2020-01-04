@@ -17,7 +17,6 @@ class DatabaseConnection
     private $_pdo;
     protected static $instance;
    
-    // protected function __construct()
     private function __construct()
     {
         try
