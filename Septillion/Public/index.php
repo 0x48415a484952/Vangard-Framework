@@ -6,21 +6,17 @@ $request = $_SERVER['REQUEST_URI'];
 // var_dump(explode('/', $request));
 // var_dump(preg_match_all('/\//', 'hi/bye'));
 $routes = [
-    '\/blog\/posts\/:id',
-    '\/blog\/posts\/:id\/:author',
-    '\/blog\/author\/posts\/:id',
-    '\/blog\/author\/posts\/:author\/comments',
-    // '/blog/posts/:id',
-    // '/blog/posts/:id/:author',
-    // '/blog/author/posts/:id',
-    // '/blog/author/posts/:author/comments',
+    '/blog/posts/:id',
+    '/blog/posts/:id/:author',
+    '/blog/author/posts/:id',
+    '/blog/author/posts/:author/comments',
 ];
 // echo $request;
 foreach($routes as $route) {
     $routerParameteres = [];
     $matchedRoute = '';
     $isMatch = true;
-    $explodedRoute = explode('\/', $route);
+    $explodedRoute = explode('/', $route);
     $explodedRequest = explode('/', $request);
     // print_r($explodedRoute);
     // print_r($explodedRequest);
