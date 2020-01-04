@@ -20,6 +20,9 @@ switch ($request) {
     case '/blog/Septillion/blog' :
         require __DIR__ . '/../Views/blog.php';
         break;
+    case '/blog/Septillion/login' :
+        require __DIR__ . '/../Views/login.php';
+        break;
     default:
         http_response_code(404);
         require __DIR__ . '/../Views/404.php';
