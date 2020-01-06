@@ -1,21 +1,21 @@
 <?php
 
 namespace Septillion\Classes;
-use Septillion\Classes\DatabaseConnection;
+use Septillion\Classes\Model;
 
-class User
+class User extends Model
 {
-    private $conn;
+    // private $conn;
     private const SELECT_USER_FROM_DATABASE = "SELECT * FROM users WHERE email=:email OR username=:username";
     private const INSERT_USER_INTO_DATABASE = "INSERT INTO users (email, username, password) VALUES(:email, :username, :password)";
     protected $email;
     protected $username;
     protected $password;
 
-    public function __construct()
-    {
-        $this->conn = DatabaseConnection::getInstance()->getConnection();
-    }
+    // public function __construct()
+    // {
+    //     $this->conn = DatabaseConnection::getInstance()->getConnection();
+    // }
 
     public function setEmail($email)
     {

@@ -1,60 +1,59 @@
 <?php
 
 namespace Septillion\Classes;
-use Septillion\Classes\DatabaseConnection;
 
-class Post
+class Post extends Model
 {
-    private $conn;
+    // private $conn;
     private const INSERT_POST_INTO_DATABASE = "INSERT INTO posts (title, article, uri) VALUES(:title, :article, :uri)";
     private const GET_POST_BY_ID_OR_URI = "SELECT * FROM posts WHERE id = :id OR uri = :uri";
     private const GET_ALL_POSTS = "SELECT * FROM posts";
-    protected $title;
-    protected $article;
-    protected $uri;
-    protected $id;
+    private $title;
+    private $article;
+    private $uri;
+    private $id;
 
-    public function __construct()
-    {
-        $this->conn = DatabaseConnection::getInstance()->getConnection();
-    }
+    // public function __construct()
+    // {
+    //     $this->conn = DatabaseConnection::getInstance()->getConnection();
+    // }
 
-    protected function setId($id)
+    public function setId($id)
     {
         $this->id = $id;
     }
 
-    protected function getid()
+    public function getId()
     {
         return $this->id;
     }
 
-    protected function setTitle($title)
+    public function setTitle($title)
     {
         $this->title = $title;
     }
 
-    protected function getTitle()
+    public function getTitle()
     {
         return $this->title;
     }
 
-    protected function setArticle($article)
+    public function setArticle($article)
     {
         $this->article = $article;
     }
 
-    protected function getArticle()
+    public function getArticle()
     {
         return $this->article;
     }
     
-    protected function setUri($uri)
+    public function setUri($uri)
     {
         $this->uri = preg_replace('/\s+/', '', $uri);
     }
 
-    protected function getUri()
+    public function getUri()
     {
         return $this->uri;
     }

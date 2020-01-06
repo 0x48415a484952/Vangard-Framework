@@ -22,9 +22,12 @@ class ComposerStaticInit0781d916a202303378e6a1b8d079e8ca
 
     public static $classMap = array (
         'Septillion\\Classes\\DatabaseConnection' => __DIR__ . '/../..' . '/Septillion/Classes/DatabaseConnection.php',
+        'Septillion\\Classes\\Model' => __DIR__ . '/../..' . '/Septillion/Classes/Model.php',
         'Septillion\\Classes\\Post' => __DIR__ . '/../..' . '/Septillion/Classes/Post.php',
         'Septillion\\Classes\\Request' => __DIR__ . '/../..' . '/Septillion/Classes/Request.php',
+        'Septillion\\Classes\\Router' => __DIR__ . '/../..' . '/Septillion/Classes/Router.php',
         'Septillion\\Classes\\User' => __DIR__ . '/../..' . '/Septillion/Classes/User.php',
+        'Septillion\\Classes\\View' => __DIR__ . '/../..' . '/Septillion/Classes/View.php',
     );
 
     public static function getInitializer(ClassLoader $loader)
