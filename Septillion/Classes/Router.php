@@ -2,40 +2,41 @@
 
 namespace Septillion\Classes;
 use Septillion\Classes\Request;
-use Septillion\Classes\View;
+use Septillion\Classes\Helper;
 
 class Router
 {
     private $route;
     private $request;
     private $isMatch;
+    private $routerParameteres;
 
     public function __construct()
     {
         
     }
 
-    public function setRoute($route)
+    private function setRoute($route)
     {
         $this->route = $route;
     }
 
-    public function getRoute()
+    private function getRoute()
     {
         return $this->route;
     }
 
-    public function setIsMatch($bool)
+    private function setIsMatch($bool)
     {
         $this->isMatch = $bool;
     }
 
-    public function getIsMatch()
+    private function getIsMatch()
     {
         return $this->isMatch;
     }
 
-    public function checkRoute($route)
+    private function checkRoute($route)
     {
         $routerParameteres = [];
         $this->isMatch = true;
@@ -61,7 +62,7 @@ class Router
                 }
             }
             if($this->isMatch) {
-                return $routerParameteres;
+                return $this->routerParameteres = $routerParameteres;
             }
         } else {
             $this->isMatch = false;
@@ -79,4 +80,17 @@ class Router
         //to that specific controller
         return $router;
     }
+
+
+
+    // public function get($route, $controller = null, callable $function)
+    // {
+    //     if($this->checkRoute($route)) {
+    //         call_user_func($function);
+    //     } else {
+    //         $view404 = new View();
+    //         return $view404->renderView(['NOT FOUND 404']);
+    //     }
+    //     return $this->routerParameteres;
+    // }
 }

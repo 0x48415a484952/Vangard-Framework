@@ -18,37 +18,37 @@ echo Router::get('/blog/:id', null);
 //     '/blog/author/posts/:author/comments',
 // ];
 
-// foreach($routes as $route) {
-//     $routerParameteres = [];
-//     $matchedRoute = '';
-//     $isMatch = true;
-//     $explodedRoute = explode('/', $route);
-//     $explodedRequest = explode('/', $request);
-//     if( count($explodedRequest) == count($explodedRoute) ) {
-//         foreach($explodedRoute as $key => $value) {
-//             if( !array_key_exists($key, $explodedRequest) ){
-//                 $isMatch = false;
-//                 break;
-//             }
+foreach($routes as $route) {
+    $routerParameteres = [];
+    $matchedRoute = '';
+    $isMatch = true;
+    $explodedRoute = explode('/', $route);
+    $explodedRequest = explode('/', $request);
+    if( count($explodedRequest) == count($explodedRoute) ) {
+        foreach($explodedRoute as $key => $value) {
+            if( !array_key_exists($key, $explodedRequest) ){
+                $isMatch = false;
+                break;
+            }
 
-//             if(preg_match('/^:/', $value)) {
-//                 $trimedValue = substr($value, 1);
-//                 $routerParameteres[$trimedValue] = $explodedRequest[$key];    
-//             } else {
-//                 if( $value != $explodedRequest[$key] ){
-//                     $isMatch = false;
-//                     break;
-//                 }
-//             }
-//         }
-//         if( $isMatch ) {
-//             $matchedRoute = $route;
-//             break;
-//         }
-//     }
-// }
-// echo $matchedRoute .'<br>';
-// print_r($routerParameteres);
+            if(preg_match('/^:/', $value)) {
+                $trimedValue = substr($value, 1);
+                $routerParameteres[$trimedValue] = $explodedRequest[$key];    
+            } else {
+                if( $value != $explodedRequest[$key] ){
+                    $isMatch = false;
+                    break;
+                }
+            }
+        }
+        if( $isMatch ) {
+            $matchedRoute = $route;
+            break;
+        }
+    }
+}
+echo $matchedRoute .'<br>';
+print_r($routerParameteres);
 //end of main
 
 
