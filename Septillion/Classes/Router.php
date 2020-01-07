@@ -40,7 +40,9 @@ class Router
         $routerParameteres = [];
         $this->isMatch = true;
         $explodedRoute = explode('/', $route);
-        $explodedRequest = explode('/', Request::request());
+        $request = Request::request();
+        $request = Helper::removeTrailingSlash($request);
+        $explodedRequest = explode('/', $request);
         if( count($explodedRequest) == count($explodedRoute) ) {
             foreach($explodedRoute as $key => $value) {
                 if( !array_key_exists($key, $explodedRequest) ){
@@ -73,6 +75,8 @@ class Router
         if($router->checkRoute($route)) {
             call_user_func($function);
         }
+        //if the route is match we can find the called controller and pass the $router which contains the route parameteres 
+        //to that specific controller
         return $router;
     }
 }
