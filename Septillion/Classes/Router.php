@@ -39,35 +39,27 @@ class Router
     private function checkRoute($route)
     {
         $routerParameteres = [];
-        $this->isMatch = true;
         $explodedRoute = explode('/', $route);
         $request = Request::request();
         $request = Helper::removeTrailingSlash($request);
         $explodedRequest = explode('/', $request);
-        if( count($explodedRequest) == count($explodedRoute) ) {
-            foreach($explodedRoute as $key => $value) {
-                if( !array_key_exists($key, $explodedRequest) ){
-                    $this->isMatch = false;
-                    break;
-                }
+        if( count($explodedRequest) != count($explodedRoute) ) return false;
 
-                if(preg_match('/^:/', $value)) {
-                    $trimedValue = substr($value, 1);
-                    $routerParameteres[$trimedValue] = $explodedRequest[$key];    
-                } else {
-                    if( $value != $explodedRequest[$key] ){
-                        $this->isMatch = false;
-                        break;
-                    }
-                }
+        foreach($explodedRoute as $key => $value) {
+            if( !array_key_exists($key, $explodedRequest) ) return false;
+
+            if(preg_match('/^:/', $value)) {
+                $trimedValue = substr($value, 1);
+                $routerParameteres[$trimedValue] = $explodedRequest[$key];    
+            } else {
+                if( $value != $explodedRequest[$key] ) return false;
             }
-            if($this->isMatch) {
-                return $this->routerParameteres = $routerParameteres;
-            }
-        } else {
-            $this->isMatch = false;
-            return $this->isMatch;
         }
+        
+        if($this->isMatch && count($routerParameteres)) $this->routerParameteres = $routerParameteres;
+
+
+        return true;
     }
 
     public static function get($route, $controller = null, callable $function)
