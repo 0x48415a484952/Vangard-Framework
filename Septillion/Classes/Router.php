@@ -55,8 +55,8 @@ class Router
                 if( $value != $explodedRequest[$key] ) return false;
             }
         }
-        
-        if($this->isMatch && count($routerParameteres)) $this->routerParameteres = $routerParameteres;
+
+        if( count($routerParameteres) ) $this->routerParameteres = $routerParameteres;
 
 
         return true;
