@@ -1,5 +1,6 @@
 <?php
 
+use Septillion\Classes\Controller;
 use Septillion\Classes\Router;
 
 require __DIR__ .'/../../vendor/autoload.php';
@@ -14,18 +15,26 @@ require __DIR__ .'/../../vendor/autoload.php';
     //    'localhost:8888/blog/' and yet we have to declare the router as below to work for homepage
 
 
-Router::get('/blog/posts/:id', null, function(){
+Router::get('/blog/posts/:id', function(){
     echo 'this is a post';
 });
 
-Router::get('/blog/posts/comments/:id', null, function(){
-    echo 'this is idk';
+// Router::get('/blog/posts/comments/:id', function(){
+//     echo 'this is idk';
+// });
+
+// Router::get('/blog', function(){
+//     echo 'this is home page';
+//     // echo 'no shit!!';
+// });
+
+Router::get('/blog', function() {
+    echo 'this is home page';
 });
 
-Router::get('/blog', null, function(){
-    echo 'this is home page';
-    // echo 'no shit!!';
-});
+Router::get('/blog/:id', 'test@action');
+
+
 
 
 
