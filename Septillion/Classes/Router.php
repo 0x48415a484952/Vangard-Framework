@@ -8,7 +8,6 @@ class Router
 {
     private $route;
     private $request;
-    private $isMatch;
     private $routerParameteres;
 
     public function __construct()
@@ -26,17 +25,7 @@ class Router
         return $this->route;
     }
 
-    private function setIsMatch($bool)
-    {
-        $this->isMatch = $bool;
-    }
-
-    private function getIsMatch()
-    {
-        return $this->isMatch;
-    }
-
-    private function checkRoute($route)
+    private function isRouteMatch($route)
     {
         $routerParameteres = [];
         $explodedRoute = explode('/', $route);
@@ -58,14 +47,13 @@ class Router
 
         if( count($routerParameteres) ) $this->routerParameteres = $routerParameteres;
 
-
         return true;
     }
 
     public static function get($route, $controller = null, callable $function)
     {
         $router = new self;
-        if($router->checkRoute($route)) {
+        if($router->isRouteMatch($route)) {
             call_user_func($function);
         }
         //if the route is match we can find the called controller and pass the $router which contains the route parameteres 
@@ -77,7 +65,7 @@ class Router
 
     // public function get($route, $controller = null, callable $function)
     // {
-    //     if($this->checkRoute($route)) {
+    //     if($this->isRouteMatch($route)) {
     //         call_user_func($function);
     //     } else {
     //         $view404 = new View();
