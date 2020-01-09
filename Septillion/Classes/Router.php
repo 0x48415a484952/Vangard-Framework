@@ -65,17 +65,12 @@ class Router
             } else {
                 if(preg_match('/[a-zA-Z]+([0-9]+)?[a-zA-Z]+@[a-zA-Z0-9]+/', $controller)) {
                     $explodedController = explode('@', $controller);
-                    $controllerName = $explodedController[0];
+                    $controllerName = "Septillion\\Controllers\\".$explodedController[0];
                     $controllerAction = $explodedController[1];
-                    Controller::exe($controllerName, $controllerAction, self::$routerParameteres);
+                    $controllerObject = new $controllerName();
+                    Controller::exe($controllerObject, $controllerAction, self::$routerParameteres);
                 }
-                //check for controller in Controllers Directory and action method
             }
-        }
-        // return self::$routerParameteres;
-        // $view = new View();
-        // return $view->renderView(['404 NOT FOUND']);
-        //if the route is match we can find the called controller and pass the $router which contains the route parameteres 
-        //to that specific controller
+        } 
     }
 }

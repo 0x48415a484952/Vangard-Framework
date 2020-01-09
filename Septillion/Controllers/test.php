@@ -2,7 +2,9 @@
 
 namespace Septillion\Controllers;
 
-class test 
+use Septillion\Classes\Controller;
+
+class Test
 {
     public function action($param)
     {

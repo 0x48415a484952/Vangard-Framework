@@ -2,20 +2,18 @@
 
 namespace Septillion\Classes;
 
-
 class Controller
 {
-    private static $controllerName;
-    private static $controllerAction;
+    private $controllerName;
+    private $controllerAction;
 
-    public static function findController($controllerName, $controllerAction)
+    public static function exe($controllerObject, $controllerAction, $routerParameteres = null)
     {
+        if($controllerObject) {
+            return call_user_func_array([$controllerObject, $controllerAction], $routerParameteres);
+        } else {
+            echo 'controller not defined';
+        }
         
-    }
-
-    public static function exe($controllerName, $controllerAction, $routerParameteres)
-    {
-        echo $controllerName.'<br/>';
-        echo $controllerAction;
     }
 }
