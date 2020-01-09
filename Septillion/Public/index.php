@@ -1,6 +1,5 @@
 <?php
 
-use Septillion\Classes\Controller;
 use Septillion\Classes\Router;
 
 
