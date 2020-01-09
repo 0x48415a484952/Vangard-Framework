@@ -14,3 +14,4 @@ Router::get('/blog', function() {
 });
 
 Router::get('/blog/:id', 'test@action');
+Router::get('/blog/comments/:id', 'test@helloWorld');

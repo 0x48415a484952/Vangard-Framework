@@ -10,4 +10,9 @@ class Test
     {
         echo $param;
     }
+
+    public function helloWorld($param)
+    {
+        echo 'hello ' . $param;
+    }
 }
