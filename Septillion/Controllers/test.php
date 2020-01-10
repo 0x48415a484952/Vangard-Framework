@@ -2,7 +2,7 @@
 
 namespace Septillion\Controllers;
 
-use Septillion\Classes\Controller;
+use Septillion\Classes\View;
 
 class Test
 {
@@ -11,8 +11,9 @@ class Test
         echo $param;
     }
 
-    public function helloWorld($param)
+    public function helloWorld()
     {
-        echo 'hello ' . $param;
+        $page = new View();
+        $page->renderView([''], 'home');
     }
 }
