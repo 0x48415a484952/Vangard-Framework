@@ -7,13 +7,14 @@ class Controller
     private $controllerName;
     private $controllerAction;
 
-    public static function exe($controllerObject, $controllerAction, $routerParameteres = null)
+    public static function exe($controllerObject, $controllerAction, $request)
     {
         if($controllerObject) {
-                if($routerParameteres == null) {
-                    return call_user_func([$controllerObject, $controllerAction]);
-                }
-                return call_user_func_array([$controllerObject, $controllerAction], $routerParameteres);
+            /* ================ Left for Hazhir to Implement a Better Strategy ============= */
+            // if($routerParameteres == null) {
+                return call_user_func([$controllerObject, $controllerAction], $request);
+            // }
+            // return call_user_func_array([$controllerObject, $controllerAction], $routerParameteres);
         } else {
             echo 'controller not defined';
         }

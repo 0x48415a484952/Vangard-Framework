@@ -3,6 +3,7 @@
 namespace Septillion\Controllers;
 
 use Septillion\Classes\View;
+use Septillion\Classes\Request;
 
 class Test
 {
@@ -11,8 +12,9 @@ class Test
         echo $param;
     }
 
-    public function helloWorld()
+    public function helloWorld(Request $req)
     {
+        echo 'id is ' . $req->params->id;
         $page = new View();
         $page->renderView([''], 'home');
     }

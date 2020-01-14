@@ -1,26 +1,27 @@
-<?php
+<?php namespace Septillion\Classes;
 
-namespace Septillion\Classes;
+use Septillion\Classes\Helper;
+use Septillion\Classes\AssociativeArray;
 
-class Request
-{
+class Request {
+    private static $_instance;
+    public $uri;
+    public $uriParts = [];
+    public $params;
+    public $query;
+    public $body;
 
-    private $request;
+    private function __construct() {
+        $this->uri = Helper::removeTrailingSlash($_SERVER['REQUEST_URI']);
+        $this->uriParts = explode('/', $this->uri);
 
-    public function __construct()
-    {
-        $this->request = $_SERVER['REQUEST_URI'];
+        $this->query    = new AssociativeArray();
+        $this->body     = new AssociativeArray();
+        $this->params   = new AssociativeArray();
     }
 
-    public function get()
-    {
-        return $this->request;
-    }
-
-    public static function request()
-    {
-        return (new self)->get();
-    }
-
-    
+    public static function getInstance(){
+        if( !self::$_instance ) self::$_instance = new Request();
+        return self::$_instance;
+    }    
 }

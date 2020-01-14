@@ -2,7 +2,6 @@
 
 namespace Septillion\Classes;
 use Septillion\Classes\Request;
-use Septillion\Classes\Helper;
 use Septillion\Classes\Controller;
 
 class Router
@@ -40,20 +39,18 @@ class Router
     {
         $routerParameteres = [];
         $explodedRoute = explode('/', $route);
-        $request = Request::request();
-        $request = Helper::removeTrailingSlash($request);
-        $explodedRequest = explode('/', $request);
-        if(count($explodedRequest) != count($explodedRoute)) return false;
+        $request = Request::getInstance();
+        if(count($request->uriParts) != count($explodedRoute)) return false;
         foreach($explodedRoute as $key => $value) {
-            if(!array_key_exists($key, $explodedRequest)) return false;
+            if(!array_key_exists($key, $request->uriParts)) return false;
             if(preg_match('/^:/', $value)) {
                 $trimedValue = substr($value, 1);
-                $routerParameteres[$trimedValue] = $explodedRequest[$key];    
+                $routerParameteres[$trimedValue] = $request->uriParts[$key];    
             } else {
-                if($value != $explodedRequest[$key]) return false;
+                if($value != $request->uriParts[$key]) return false;
             }
         }
-        if(count($routerParameteres)) self::$routerParameteres = $routerParameteres;
+        if(count($routerParameteres)) $request->params->set($routerParameteres);
         return true;
     }
 
@@ -61,14 +58,14 @@ class Router
     {
         if(self::isRouteMatch($route)) {
             if(is_callable($controller)) {
-                call_user_func($controller);
+                call_user_func($controller, Request::getInstance());
             } else {
                 if(preg_match('/[a-zA-Z]+([0-9]+)?[a-zA-Z]+@[a-zA-Z0-9]+/', $controller)) {
                     $explodedController = explode('@', $controller);
                     $controllerName = "Septillion\\Controllers\\".$explodedController[0];
                     $controllerAction = $explodedController[1];
                     $controllerObject = new $controllerName();
-                    Controller::exe($controllerObject, $controllerAction, self::$routerParameteres);
+                    Controller::exe($controllerObject, $controllerAction, Request::getInstance());
                 }
             }
         } 
