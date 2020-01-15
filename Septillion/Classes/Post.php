@@ -4,7 +4,6 @@ namespace Septillion\Classes;
 
 class Post extends Model
 {
-    // private $conn;
     private const INSERT_POST_INTO_DATABASE = "INSERT INTO posts (title, article, uri) VALUES(:title, :article, :uri)";
     private const GET_POST_BY_ID_OR_URI = "SELECT * FROM posts WHERE id = :id OR uri = :uri";
     private const GET_ALL_POSTS = "SELECT * FROM posts";
@@ -12,11 +11,6 @@ class Post extends Model
     private $article;
     private $uri;
     private $id;
-
-    // public function __construct()
-    // {
-    //     $this->conn = DatabaseConnection::getInstance()->getConnection();
-    // }
 
     public function setId($id)
     {
