@@ -3,7 +3,6 @@
 use Septillion\Classes\Router;
 use Septillion\Classes\Request;
 
-
 require __DIR__ .'/../../vendor/autoload.php';
 
 // For now we envoke the Request right here, until we find a better place fo that

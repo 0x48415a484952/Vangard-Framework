@@ -2,8 +2,6 @@
 
 namespace Septillion\Classes;
 
-
-
 class Helper
 {
     public static function endsWith($haystack, $needle)

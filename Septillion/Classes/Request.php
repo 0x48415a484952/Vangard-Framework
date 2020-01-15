@@ -1,5 +1,6 @@
-<?php namespace Septillion\Classes;
+<?php 
 
+namespace Septillion\Classes;
 use Septillion\Classes\Helper;
 use Septillion\Classes\AssociativeArray;
 

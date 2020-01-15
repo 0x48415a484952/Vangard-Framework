@@ -1,7 +1,6 @@
 <?php
 
 namespace Septillion\Controllers;
-
 use Septillion\Classes\View;
 use Septillion\Classes\Request;
 

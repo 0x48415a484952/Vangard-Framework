@@ -1,4 +1,6 @@
-<?php namespace Septillion\Classes;
+<?php 
+
+namespace Septillion\Classes;
 
 class AssociativeArray {
     private $_items = [];
