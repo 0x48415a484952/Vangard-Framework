@@ -1,6 +1,6 @@
 <?php
 
-namespace Septillion\Classes;
+namespace Septillion\Framework\Model;
 use PDO;
 use PDOException;
 
@@ -31,7 +31,6 @@ class DatabaseConnection
 
     public static function getInstance()
     {
-        // if(!isset(self::$instance)) {
         if(!self::$instance) {
             self::$instance = new DatabaseConnection();
         }

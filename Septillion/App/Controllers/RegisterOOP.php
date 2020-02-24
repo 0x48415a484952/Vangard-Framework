@@ -1,7 +1,7 @@
 <?php
 
-namespace Septillion\Controllers;
-use Septillion\Classes\User;
+namespace Septillion\App\Controllers;
+use App\Models\User;
 
 // header('Content-Type: application/json');
 // require __DIR__ .'/../../vendor/autoload.php';

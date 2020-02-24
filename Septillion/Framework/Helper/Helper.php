@@ -1,6 +1,6 @@
 <?php
 
-namespace Septillion\Classes;
+namespace Septillion\Framework\Helper;
 
 class Helper
 {
@@ -15,6 +15,6 @@ class Helper
 
     public static function removeTrailingSlash($url)
     {
-     return rtrim($url, '/');
+        return rtrim($url, '/');
     }
 }

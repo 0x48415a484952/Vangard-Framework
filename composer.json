@@ -1,26 +1,24 @@
 {
-  "name": "Septillion",
-  "type": "project",
-  "description": "A Powerfull Blog System",
-  "license": "MIT",
-  "require": {
-    "php": ">=7.2.8"
-  },
-  "config": {
-    "optimize-autoloader": true
-  },
-  "authors": [
-      {
+    "name": "Septillion",
+    "type": "project",
+    "description": "A Powerfull Blog System",
+    "license": "MIT",
+    "require": {
+        "php": ">=7.2.8"
+    },
+    "config": {
+        "optimize-autoloader": true
+    },
+    "authors": [{
         "name": "Hazhir Ahmadzadeh",
         "email": "hazhiir1811@gmail.com"
-      }
-  ],
-  "autoload": {
-    "psr-4": {
-      "Septillion\\" : "Septillion/"
+    }],
+    "autoload": {
+        "psr-4": {
+            "Septillion\\" : "Septillion"
+        }
+    },
+    "archive": {
+        "exclude": ["vendor", ".DS_Store", "*.log"]
     }
-  },
-  "archive": {
-    "exclude": ["vendor", ".DS_Store", "*.log"]
-  }
 }

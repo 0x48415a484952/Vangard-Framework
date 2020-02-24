@@ -1,6 +1,6 @@
 <?php
 
-namespace Septillion\Classes;
+namespace Septillion\Framework\Controller;
 
 class Controller
 {

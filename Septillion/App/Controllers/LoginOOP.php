@@ -1,8 +1,7 @@
 <?php
 
-namespace App\Septillion\Controllers;
-use Septillion\Classes\User;
-require __DIR__ .'/../../vendor/autoload.php';
+namespace Septillion\App\Controllers;
+use App\Models\User;
 
 header('Content-Type: application/json');
 if(isset($_COOKIE['login_status'])) header('location:index.php');

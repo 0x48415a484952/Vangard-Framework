@@ -21,16 +21,17 @@ class ComposerStaticInit0781d916a202303378e6a1b8d079e8ca
     );
 
     public static $classMap = array (
-        'Septillion\\Classes\\Controller' => __DIR__ . '/../..' . '/Septillion/Classes/Controller.php',
-        'Septillion\\Classes\\DatabaseConnection' => __DIR__ . '/../..' . '/Septillion/Classes/DatabaseConnection.php',
-        'Septillion\\Classes\\Helper' => __DIR__ . '/../..' . '/Septillion/Classes/Helper.php',
-        'Septillion\\Classes\\Model' => __DIR__ . '/../..' . '/Septillion/Classes/Model.php',
-        'Septillion\\Classes\\Post' => __DIR__ . '/../..' . '/Septillion/Classes/Post.php',
-        'Septillion\\Classes\\Request' => __DIR__ . '/../..' . '/Septillion/Classes/Request.php',
-        'Septillion\\Classes\\Router' => __DIR__ . '/../..' . '/Septillion/Classes/Router.php',
-        'Septillion\\Classes\\User' => __DIR__ . '/../..' . '/Septillion/Classes/User.php',
-        'Septillion\\Classes\\View' => __DIR__ . '/../..' . '/Septillion/Classes/View.php',
-        'Septillion\\Controllers\\Test' => __DIR__ . '/../..' . '/Septillion/Controllers/Test.php',
+        'Septillion\\App\\Controllers\\Test' => __DIR__ . '/../..' . '/Septillion/App/Controllers/test.php',
+        'Septillion\\App\\Models\\Post' => __DIR__ . '/../..' . '/Septillion/App/Models/Post.php',
+        'Septillion\\App\\Models\\User' => __DIR__ . '/../..' . '/Septillion/App/Models/User.php',
+        'Septillion\\App\\Views\\View' => __DIR__ . '/../..' . '/Septillion/App/Views/View.php',
+        'Septillion\\Framework\\Controller\\Controller' => __DIR__ . '/../..' . '/Septillion/Framework/Controller/Controller.php',
+        'Septillion\\Framework\\Helper\\Helper' => __DIR__ . '/../..' . '/Septillion/Framework/Helper/Helper.php',
+        'Septillion\\Framework\\Model\\DatabaseConnection' => __DIR__ . '/../..' . '/Septillion/Framework/Model/DatabaseConnection.php',
+        'Septillion\\Framework\\Model\\Model' => __DIR__ . '/../..' . '/Septillion/Framework/Model/Model.php',
+        'Septillion\\Framework\\Request\\AssociativeArray' => __DIR__ . '/../..' . '/Septillion/Framework/Request/AssociativeArray.php',
+        'Septillion\\Framework\\Request\\Request' => __DIR__ . '/../..' . '/Septillion/Framework/Request/Request.php',
+        'Septillion\\Framework\\Router\\Router' => __DIR__ . '/../..' . '/Septillion/Framework/Router/Router.php',
     );
 
     public static function getInitializer(ClassLoader $loader)

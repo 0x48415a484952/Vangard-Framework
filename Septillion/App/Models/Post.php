@@ -1,6 +1,7 @@
 <?php
 
-namespace Septillion\Classes;
+namespace Septillion\App\Models;
+use Septillion\Framework\Model\Model;
 
 class Post extends Model
 {

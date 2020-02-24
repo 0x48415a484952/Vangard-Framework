@@ -6,14 +6,15 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'Septillion\\Classes\\Controller' => $baseDir . '/Septillion/Classes/Controller.php',
-    'Septillion\\Classes\\DatabaseConnection' => $baseDir . '/Septillion/Classes/DatabaseConnection.php',
-    'Septillion\\Classes\\Helper' => $baseDir . '/Septillion/Classes/Helper.php',
-    'Septillion\\Classes\\Model' => $baseDir . '/Septillion/Classes/Model.php',
-    'Septillion\\Classes\\Post' => $baseDir . '/Septillion/Classes/Post.php',
-    'Septillion\\Classes\\Request' => $baseDir . '/Septillion/Classes/Request.php',
-    'Septillion\\Classes\\Router' => $baseDir . '/Septillion/Classes/Router.php',
-    'Septillion\\Classes\\User' => $baseDir . '/Septillion/Classes/User.php',
-    'Septillion\\Classes\\View' => $baseDir . '/Septillion/Classes/View.php',
-    'Septillion\\Controllers\\Test' => $baseDir . '/Septillion/Controllers/Test.php',
+    'Septillion\\App\\Controllers\\Test' => $baseDir . '/Septillion/App/Controllers/test.php',
+    'Septillion\\App\\Models\\Post' => $baseDir . '/Septillion/App/Models/Post.php',
+    'Septillion\\App\\Models\\User' => $baseDir . '/Septillion/App/Models/User.php',
+    'Septillion\\App\\Views\\View' => $baseDir . '/Septillion/App/Views/View.php',
+    'Septillion\\Framework\\Controller\\Controller' => $baseDir . '/Septillion/Framework/Controller/Controller.php',
+    'Septillion\\Framework\\Helper\\Helper' => $baseDir . '/Septillion/Framework/Helper/Helper.php',
+    'Septillion\\Framework\\Model\\DatabaseConnection' => $baseDir . '/Septillion/Framework/Model/DatabaseConnection.php',
+    'Septillion\\Framework\\Model\\Model' => $baseDir . '/Septillion/Framework/Model/Model.php',
+    'Septillion\\Framework\\Request\\AssociativeArray' => $baseDir . '/Septillion/Framework/Request/AssociativeArray.php',
+    'Septillion\\Framework\\Request\\Request' => $baseDir . '/Septillion/Framework/Request/Request.php',
+    'Septillion\\Framework\\Router\\Router' => $baseDir . '/Septillion/Framework/Router/Router.php',
 );

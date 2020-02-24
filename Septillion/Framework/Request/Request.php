@@ -1,8 +1,8 @@
 <?php 
 
-namespace Septillion\Classes;
-use Septillion\Classes\Helper;
-use Septillion\Classes\AssociativeArray;
+namespace Septillion\Framework\Request;
+use Septillion\Framework\Helper\Helper;
+use Septillion\Framework\Request\AssociativeArray;
 
 class Request {
     private static $_instance;

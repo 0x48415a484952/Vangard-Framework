@@ -1,8 +1,8 @@
 <?php
 
-namespace Septillion\Classes;
-use Septillion\Classes\Request;
-use Septillion\Classes\Controller;
+namespace Septillion\Framework\Router;
+use Septillion\Framework\Request\Request;
+use Septillion\Framework\Controller\Controller;
 
 class Router
 {
@@ -62,7 +62,7 @@ class Router
             } else {
                 if(preg_match('/[a-zA-Z]+([0-9]+)?[a-zA-Z]+@[a-zA-Z0-9]+/', $controller)) {
                     $explodedController = explode('@', $controller);
-                    $controllerName = "Septillion\\Controllers\\".$explodedController[0];
+                    $controllerName = "Septillion\\App\\Controllers\\".$explodedController[0];
                     $controllerAction = $explodedController[1];
                     $controllerObject = new $controllerName();
                     Controller::exe($controllerObject, $controllerAction, Request::getInstance());

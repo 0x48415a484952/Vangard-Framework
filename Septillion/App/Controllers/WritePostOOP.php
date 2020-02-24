@@ -1,7 +1,7 @@
 <?php
 
-namespace Septillion\Controllers;
-use Septillion\Classes\Post;
+namespace Septillion\App\Controllers;
+use App\Models\Post;
 
 // header('Content-Type: application/json');
 if(isset($_POST['title'], $_POST['article'], $_POST['uri'])) {
