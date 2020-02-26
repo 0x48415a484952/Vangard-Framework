@@ -15,7 +15,9 @@
     }],
     "autoload": {
         "psr-4": {
-            "Septillion\\" : "Septillion"
+            "Septillion\\" : "Septillion",
+            "App\\" : "App"
+
         }
     },
     "archive": {

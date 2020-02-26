@@ -11,6 +11,10 @@ class ComposerStaticInit0781d916a202303378e6a1b8d079e8ca
         array (
             'Septillion\\' => 11,
         ),
+        'A' => 
+        array (
+            'App\\' => 4,
+        ),
     );
 
     public static $prefixDirsPsr4 = array (
@@ -18,13 +22,16 @@ class ComposerStaticInit0781d916a202303378e6a1b8d079e8ca
         array (
             0 => __DIR__ . '/../..' . '/Septillion',
         ),
+        'App\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/App',
+        ),
     );
 
     public static $classMap = array (
-        'Septillion\\App\\Controllers\\Test' => __DIR__ . '/../..' . '/Septillion/App/Controllers/test.php',
-        'Septillion\\App\\Models\\Post' => __DIR__ . '/../..' . '/Septillion/App/Models/Post.php',
-        'Septillion\\App\\Models\\User' => __DIR__ . '/../..' . '/Septillion/App/Models/User.php',
-        'Septillion\\App\\Views\\View' => __DIR__ . '/../..' . '/Septillion/App/Views/View.php',
+        'App\\Controllers\\Test' => __DIR__ . '/../..' . '/App/Controllers/test.php',
+        'App\\Models\\Post' => __DIR__ . '/../..' . '/App/Models/Post.php',
+        'App\\Models\\User' => __DIR__ . '/../..' . '/App/Models/User.php',
         'Septillion\\Framework\\Controller\\Controller' => __DIR__ . '/../..' . '/Septillion/Framework/Controller/Controller.php',
         'Septillion\\Framework\\Helper\\Helper' => __DIR__ . '/../..' . '/Septillion/Framework/Helper/Helper.php',
         'Septillion\\Framework\\Model\\DatabaseConnection' => __DIR__ . '/../..' . '/Septillion/Framework/Model/DatabaseConnection.php',

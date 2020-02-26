@@ -62,7 +62,7 @@ class Router
             } else {
                 if(preg_match('/[a-zA-Z]+([0-9]+)?[a-zA-Z]+@[a-zA-Z0-9]+/', $controller)) {
                     $explodedController = explode('@', $controller);
-                    $controllerName = "Septillion\\App\\Controllers\\".$explodedController[0];
+                    $controllerName = "App\\Controllers\\".$explodedController[0];
                     $controllerAction = $explodedController[1];
                     $controllerObject = new $controllerName();
                     Controller::exe($controllerObject, $controllerAction, Request::getInstance());
