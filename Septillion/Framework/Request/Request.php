@@ -21,7 +21,7 @@ class Request {
         $this->params   = new AssociativeArray();
     }
 
-    public static function getInstance(){
+    public static function getInstance() {
         if( !self::$_instance ) self::$_instance = new Request();
         return self::$_instance;
     }    

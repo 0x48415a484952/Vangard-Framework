@@ -1,5 +1,5 @@
 <?php
-namespace App\Routes;
+namespace Septillion\App\Routes;
 use Septillion\Framework\Router\Router;
 use Septillion\Framework\Request\Request;
 
@@ -12,6 +12,8 @@ Request::getInstance();
 Router::get('/Septillion/posts/:id', function(Request $req){
     echo 'this is a post with id ' . $req->params->id;
 });
+
+
 
 Router::get('/Septillion/:id', 'test@helloWorld');
 Router::get('/Septillion/comments/:id', 'test@helloWorld');

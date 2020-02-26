@@ -1,7 +1,7 @@
 <?php
 
-namespace App\Controllers;
-use App\Models\User;
+namespace Septillion\App\Controllers;
+use Septillion\App\Models\User;
 
 header('Content-Type: application/json');
 if(isset($_COOKIE['login_status'])) header('location:index.php');
