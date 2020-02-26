@@ -1,6 +1,7 @@
 <?php
 
 namespace Septillion\Framework\Model;
+
 use Septillion\Framework\Model\DatabaseConnection;
 
 class Model

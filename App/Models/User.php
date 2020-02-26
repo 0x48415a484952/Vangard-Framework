@@ -1,6 +1,7 @@
 <?php
 
 namespace Septillion\App\Models;
+
 use Septillion\Framework\Model\Model;
 
 class User extends Model

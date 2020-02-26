@@ -1,6 +1,7 @@
 <?php
 
 namespace Septillion\App\Controllers;
+
 use Septillion\App\Models\Post;
 
 // header('Content-Type: application/json');

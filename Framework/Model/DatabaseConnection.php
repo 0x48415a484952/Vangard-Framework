@@ -1,6 +1,7 @@
 <?php
 
 namespace Septillion\Framework\Model;
+
 use PDO;
 use PDOException;
 

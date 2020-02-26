@@ -15,7 +15,7 @@
     }],
     "autoload": {
         "psr-4": {
-            "Septillion\\" : "Septillion",
+            "Septillion\\Framework\\" : "Framework",
             "Septillion\\App\\" : "App"
 
         }

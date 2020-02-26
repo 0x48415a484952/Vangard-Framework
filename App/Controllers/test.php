@@ -1,6 +1,9 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Septillion\App\Controllers;
+
 use Septillion\Framework\Request\Request;
 
 class Test

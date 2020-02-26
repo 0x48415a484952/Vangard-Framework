@@ -1,6 +1,7 @@
 <?php 
 
 namespace Septillion\Framework\Request;
+
 use Septillion\Framework\Helper\Helper;
 use Septillion\Framework\Request\AssociativeArray;
 

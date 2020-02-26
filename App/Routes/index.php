@@ -1,5 +1,7 @@
 <?php
+
 namespace Septillion\App\Routes;
+
 use Septillion\Framework\Router\Router;
 use Septillion\Framework\Request\Request;
 
