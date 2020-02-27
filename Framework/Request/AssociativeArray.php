@@ -19,7 +19,7 @@ class AssociativeArray
     }
     
     public function addItem($key, $value) {
-        if( $key ) {
+        if ($key) {
             $this->_items[$key] = $value;
         }
     }

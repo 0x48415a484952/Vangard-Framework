@@ -9,7 +9,7 @@ class Controller
 
     public static function exe($controllerObject, $controllerAction, $request)
     {
-        if($controllerObject) {
+        if ($controllerObject) {
             /* ================ Left for Hazhir to Implement a Better Strategy ============= */
             // if($routerParameteres == null) {
                 return call_user_func([$controllerObject, $controllerAction], $request);

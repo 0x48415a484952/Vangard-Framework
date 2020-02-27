@@ -32,7 +32,7 @@ class DatabaseConnection
 
     public static function getInstance()
     {
-        if(!self::$instance) {
+        if (!self::$instance) {
             self::$instance = new DatabaseConnection();
         }
         return self::$instance;

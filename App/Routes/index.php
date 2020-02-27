@@ -17,5 +17,7 @@ Router::get('/Septillion/posts/:id', function(Request $req){
 
 
 
-Router::get('/Septillion/:id', 'test@helloWorld');
-Router::get('/Septillion/comments/:id', 'test@helloWorld');
+// Router::get('/Septillion/:id', 'Home@helloWorld');
+
+Router::resource('/Septillion/comment', 'Home');
+

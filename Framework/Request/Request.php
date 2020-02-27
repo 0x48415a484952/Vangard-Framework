@@ -23,7 +23,25 @@ class Request {
     }
 
     public static function getInstance() {
-        if( !self::$_instance ) self::$_instance = new Request();
+        if (!self::$_instance) self::$_instance = new Request();
         return self::$_instance;
-    }    
+    }   
+
+    ///old implementation///
+    // private $request;
+
+    // public function __construct()
+    // {
+    //     $this->request = $_SERVER['REQUEST_URI'];
+    // }
+
+    // public function get()
+    // {
+    //     return $this->request;
+    // }
+
+    // public static function request()
+    // {
+    //     return (new self)->get();
+    // } 
 }
