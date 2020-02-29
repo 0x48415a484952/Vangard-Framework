@@ -6,7 +6,6 @@ use Septillion\Framework\Router\Router;
 use Septillion\Framework\Request\Request;
 
 require __DIR__ .'/../../vendor/autoload.php';
-// require __DIR__ .'/../../../vendor/autoload.php';
 
 // For now we envoke the Request right here, until we find a better place fo that
 Request::getInstance();

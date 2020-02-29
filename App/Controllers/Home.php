@@ -16,8 +16,25 @@ class Home
         echo 'this is the index fucntion';
     }
 
+    public function show()
+    {
+        echo 'this is the show function';
+    }
+
     public function store()
     {
         echo 'this is the post fucntion';
     }
+
+    public function update()
+    {
+        echo 'this is the update function';
+    }
+
+    public function destroy()
+    {
+        echo 'this is the delete function';
+    }
+
+
 }
