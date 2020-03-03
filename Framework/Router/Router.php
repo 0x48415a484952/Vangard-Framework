@@ -33,7 +33,7 @@ class Router
 
     private static function checkController($path) 
     {
-
+        
     }
 
     private static function isRouteMatch($route)
@@ -43,7 +43,7 @@ class Router
         $request = Request::getInstance();
         if ($_SERVER['REQUEST_METHOD'] == 'GET') {
             if (count($explodedRoute) + 1 == count($request->uriParts)) {
-                array_push($explodedRoute, ':septillion'.mt_rand(100000, 999999));
+                array_push($explodedRoute, ':id');
             }
         }
 
@@ -132,6 +132,39 @@ class Router
     {
         if (self::isRouteMatch($route)) {
             if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+                self::executingCallbackOrRunningControllerFunction($controller);
+            } else {
+                echo 'Method Not Allowed';
+            }
+        }
+    }
+
+    public static function post($route, $controller)
+    {
+        if (self::isRouteMatch($route)) {
+            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                self::executingCallbackOrRunningControllerFunction($controller);
+            } else {
+                echo 'Method Not Allowed';
+            }
+        }
+    }
+
+    public static function put($route, $controller)
+    {
+        if (self::isRouteMatch($route)) {
+            if ($_SERVER['REQUEST_METHOD'] == 'PUT') {
+                self::executingCallbackOrRunningControllerFunction($controller);
+            } else {
+                echo 'Method Not Allowed';
+            }
+        }
+    }
+
+    public static function delete($route, $controller)
+    {
+        if (self::isRouteMatch($route)) {
+            if ($_SERVER['REQUEST_METHOD'] == 'DELETE') {
                 self::executingCallbackOrRunningControllerFunction($controller);
             } else {
                 echo 'Method Not Allowed';
