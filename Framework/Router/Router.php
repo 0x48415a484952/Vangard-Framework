@@ -8,22 +8,31 @@ use Septillion\Framework\Controller\Controller;
 class Router
 {
     private static $route;
-    private static $request;
-    private static $routerParameteres;
+    private static $routerParameteres = [];
+    private static $explodedRoute;
+    private static $controllerRegex = '/[a-zA-Z]+([0-9]+)?[a-zA-Z]+@[a-zA-Z0-9]+/';
+    private static $controllerNamespace = "Septillion\\App\\Controllers\\";
+    private static $controllerObject;
+    private static $controllerAction;
 
     public function __construct()
     {
         
     }
 
-    private function setRoute($route)
+    private static function setRoute($route)
     {
-        $this->route = $route;
+        self::$route = $route;
     }
 
-    private function getRoute()
+    private static function getRoute()
     {
-        return $this->route;
+        return self::$route;
+    }
+
+    private static function setExplodedRoute()
+    {
+        self::$explodedRoute = explode('/', self::$route);
     }
 
     private static function checkAction($actionName)
@@ -31,95 +40,70 @@ class Router
 
     }
 
-    private static function checkController($path) 
-    {
-        
+    private static function checkController($controller) 
+    {       
+        if (!preg_match(self::$controllerRegex, $controller)) {
+            $controllerName = self::$controllerNamespace.$controller;
+            self::$controllerObject = new $controllerName();
+            return false;
+        } 
+        $explodedController = explode('@', $controller);
+        $controllerName = self::$controllerNamespace.$explodedController[0];
+        self::$controllerObject = new $controllerName();
+        self::$controllerAction = $explodedController[1];
+        return true;
     }
 
     private static function isRouteMatch($route)
     {
-        $routerParameteres = [];
-        $explodedRoute = explode('/', $route);
+        self::setRoute($route);
+        self::setExplodedRoute();
         $request = Request::getInstance();
         if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-            if (count($explodedRoute) + 1 == count($request->uriParts)) {
-                array_push($explodedRoute, ':id');
+            if (count(self::$explodedRoute) + 1 == count($request->uriParts)) {
+                array_push(self::$explodedRoute, ':id');
             }
         }
-
-        if (count($request->uriParts) != count($explodedRoute)) return false;
-        foreach ($explodedRoute as $key => $value) {
+        if (count($request->uriParts) != count(self::$explodedRoute)) return false;
+        foreach (self::$explodedRoute as $key => $value) {
             if (!array_key_exists($key, $request->uriParts)) return false;
             if (preg_match('/^:/', $value)) {
                 $trimedValue = substr($value, 1);
-                $routerParameteres[$trimedValue] = $request->uriParts[$key];
-
                 self::$routerParameteres[$trimedValue] = $request->uriParts[$key];
-
+                self::$routerParameteres[$trimedValue] = $request->uriParts[$key];
             } elseif ($value != $request->uriParts[$key]) return false;
         }
-        if (count($routerParameteres)) $request->params->set($routerParameteres);
+        if (count(self::$routerParameteres)) $request->params->set(self::$routerParameteres);
         return true;
-
-
-
-        // $routerParameteres = [];
-        // $explodedRoute = explode('/', $route);
-        // $request = Request::getInstance();
-        // if (count($request->uriParts) != count($explodedRoute)) return false;
-        // foreach ($explodedRoute as $key => $value) {
-        //     if (!array_key_exists($key, $request->uriParts)) return false;
-        //     if (preg_match('/^:/', $value)) {
-        //         $trimedValue = substr($value, 1);
-        //         $routerParameteres[$trimedValue] = $request->uriParts[$key];    
-        //     } elseif ($value != $request->uriParts[$key]) return false;
-        // }
-        // if (count($routerParameteres)) $request->params->set($routerParameteres);
-        // return true;
     }
 
     private static function findingAndExecutingController($controller)
     {
-        $controllerAction = null;
-        $controllerObject = null;
-        if (preg_match('/[a-zA-Z]+([0-9]+)?[a-zA-Z]+@[a-zA-Z0-9]+/', $controller)) {
-            $explodedController = explode('@', $controller);
-            $controllerName = "Septillion\\App\\Controllers\\".$explodedController[0];
-            $controllerObject = new $controllerName();
-            $controllerAction = $explodedController[1];
-            Controller::exe($controllerObject, $controllerAction, Request::getInstance());
+        if (self::checkController($controller)) {
+            Controller::exe(self::$controllerObject, self::$controllerAction, Request::getInstance());
         } else {
-            $controllerName = "Septillion\\App\\Controllers\\".$controller;
-            $controllerObject = new $controllerName();
             switch ($_SERVER['REQUEST_METHOD']) {
                 case 'GET':
                     if (!empty(self::$routerParameteres)) {
-                        $controllerAction = 'show';
-                        Controller::exe($controllerObject, $controllerAction, Request::getInstance());
+                        Controller::exe(self::$controllerObject, 'show', Request::getInstance());
                     } else {
-                        $controllerAction = 'index';
-                        Controller::exe($controllerObject, $controllerAction, Request::getInstance());
+                        Controller::exe(self::$controllerObject, 'index', Request::getInstance());
                     }
                     break;
                 case 'POST':
-                    $controllerAction = 'store';
-                    Controller::exe($controllerObject, $controllerAction, Request::getInstance());
+                    Controller::exe(self::$controllerObject, 'store', Request::getInstance());
                     break;
                 case 'PUT':
-                    //need to update the router for this to work
-                    $controllerAction = 'update';
-                    Controller::exe($controllerObject, $controllerAction, Request::getInstance());
+                    Controller::exe(self::$controllerObject, 'update', Request::getInstance());
                     break;
                 case 'DELETE':
-                    //need to update the router for this to work
-                    $controllerAction = 'destroy';
-                    Controller::exe($controllerObject, $controllerAction, Request::getInstance());
+                    Controller::exe(self::$controllerObject, 'destroy', Request::getInstance());
                     break;
             }
         }
     }
 
-    private static function executingCallbackOrRunningControllerFunction($controller)
+    private static function executingCallbackOrRunningControllerMethod($controller)
     {
         if (is_callable($controller)) {
             call_user_func($controller, Request::getInstance());
@@ -132,7 +116,7 @@ class Router
     {
         if (self::isRouteMatch($route)) {
             if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-                self::executingCallbackOrRunningControllerFunction($controller);
+                self::executingCallbackOrRunningControllerMethod($controller);
             } else {
                 echo 'Method Not Allowed';
             }
@@ -143,7 +127,7 @@ class Router
     {
         if (self::isRouteMatch($route)) {
             if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-                self::executingCallbackOrRunningControllerFunction($controller);
+                self::executingCallbackOrRunningControllerMethod($controller);
             } else {
                 echo 'Method Not Allowed';
             }
@@ -154,7 +138,7 @@ class Router
     {
         if (self::isRouteMatch($route)) {
             if ($_SERVER['REQUEST_METHOD'] == 'PUT') {
-                self::executingCallbackOrRunningControllerFunction($controller);
+                self::executingCallbackOrRunningControllerMethod($controller);
             } else {
                 echo 'Method Not Allowed';
             }
@@ -165,7 +149,7 @@ class Router
     {
         if (self::isRouteMatch($route)) {
             if ($_SERVER['REQUEST_METHOD'] == 'DELETE') {
-                self::executingCallbackOrRunningControllerFunction($controller);
+                self::executingCallbackOrRunningControllerMethod($controller);
             } else {
                 echo 'Method Not Allowed';
             }
@@ -175,7 +159,7 @@ class Router
     public static function resource($route, $controller) 
     {
         if (self::isRouteMatch($route)) {
-            self::executingCallbackOrRunningControllerFunction($controller);
+            self::executingCallbackOrRunningControllerMethod($controller);
         }
     }
 }
