@@ -77,7 +77,7 @@ class Router
         return true;
     }
 
-    private static function findingAndExecutingController($controller)
+    private static function executingControllerBasedOnMethod($controller)
     {
         if (self::checkController($controller)) {
             Controller::exe(self::$controllerObject, self::$controllerAction, Request::getInstance());
@@ -108,8 +108,13 @@ class Router
         if (is_callable($controller)) {
             call_user_func($controller, Request::getInstance());
         } else {
-            self::findingAndExecutingController($controller);
+            self::executingControllerBasedOnMethod($controller);
         }
+    }
+
+    private static function methodNotAllowed()
+    {
+        echo 'Method Not Allowed';
     }
 
     public static function get($route, $controller)
@@ -118,7 +123,7 @@ class Router
             if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                 self::executingCallbackOrRunningControllerMethod($controller);
             } else {
-                echo 'Method Not Allowed';
+                self::methodNotAllowed();
             }
         }
     }
@@ -129,7 +134,7 @@ class Router
             if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 self::executingCallbackOrRunningControllerMethod($controller);
             } else {
-                echo 'Method Not Allowed';
+                self::methodNotAllowed();
             }
         }
     }
@@ -140,7 +145,7 @@ class Router
             if ($_SERVER['REQUEST_METHOD'] == 'PUT') {
                 self::executingCallbackOrRunningControllerMethod($controller);
             } else {
-                echo 'Method Not Allowed';
+                self::methodNotAllowed();
             }
         }
     }
@@ -151,7 +156,7 @@ class Router
             if ($_SERVER['REQUEST_METHOD'] == 'DELETE') {
                 self::executingCallbackOrRunningControllerMethod($controller);
             } else {
-                echo 'Method Not Allowed';
+                self::methodNotAllowed();
             }
         }
     }
