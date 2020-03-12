@@ -92,38 +92,37 @@ class Router
         }
     }
 
+    private static function finalCall($route, $controller, $method = null)
+    {
+        if ($method != null && self::isRouteMatch($route) && $_SERVER['REQUEST_METHOD'] == $method) {
+            self::executingCallbackOrRunningControllerMethod($controller);
+        } 
+
+        if ($method == null && self::isRouteMatch($route)) self::executingCallbackOrRunningControllerMethod($controller);
+    }
+
     public static function get($route, $controller)
     {
-        if (self::isRouteMatch($route) && $_SERVER['REQUEST_METHOD'] == 'GET') {
-            self::executingCallbackOrRunningControllerMethod($controller);
-        }
+        self::finalCall($route, $controller, 'GET');
     }
 
     public static function post($route, $controller)
     {
-        if (self::isRouteMatch($route) && $_SERVER['REQUEST_METHOD'] == 'POST') {
-            self::executingCallbackOrRunningControllerMethod($controller);
-        }
+        self::finalCall($route, $controller, 'POST');
     }
 
     public static function put($route, $controller)
     {
-        if (self::isRouteMatch($route) && $_SERVER['REQUEST_METHOD'] == 'PUT') {
-            self::executingCallbackOrRunningControllerMethod($controller);
-        }
+        self::finalCall($route, $controller, 'PUT');
     }
 
     public static function delete($route, $controller)
     {
-        if (self::isRouteMatch($route) && $_SERVER['REQUEST_METHOD'] == 'DELETE') {
-            self::executingCallbackOrRunningControllerMethod($controller);
-        }
+        self::finalCall($route, $controller, 'DELETE');
     }
 
     public static function resource($route, $controller) 
     {
-        if (self::isRouteMatch($route)) {
-            self::executingCallbackOrRunningControllerMethod($controller);
-        }
+        self::finalCall($route, $controller);
     }
 }
