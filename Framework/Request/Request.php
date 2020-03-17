@@ -16,32 +16,24 @@ class Request {
     private function __construct() {
         $this->uri = Helper::removeTrailingSlash($_SERVER['REQUEST_URI']);
         $this->uriParts = explode('/', $this->uri);
-
         $this->query    = new AssociativeArray();
         $this->body     = new AssociativeArray();
         $this->params   = new AssociativeArray();
     }
 
+    public static function setPostBodyParams()
+    {
+        if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST)) {
+            foreach($_POST as $key => $value) {
+                $body[$key] = htmlspecialchars($value);
+            }
+            self::getInstance()->body->set($body);
+            // $request->body->set($body);
+        }
+    }
+
     public static function getInstance() {
         if (!self::$_instance) self::$_instance = new Request();
         return self::$_instance;
-    }   
-
-    ///old implementation///
-    // private $request;
-
-    // public function __construct()
-    // {
-    //     $this->request = $_SERVER['REQUEST_URI'];
-    // }
-
-    // public function get()
-    // {
-    //     return $this->request;
-    // }
-
-    // public static function request()
-    // {
-    //     return (new self)->get();
-    // } 
+    }
 }
