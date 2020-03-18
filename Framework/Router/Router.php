@@ -40,12 +40,12 @@ class Router
     private static function finalCall($route, $controller, $method = null)
     {
         if ($method != null && self::isRouteMatch($route) && $_SERVER['REQUEST_METHOD'] == $method) {
-            Controller::executingCallbackOrRunningControllerMethod($controller);
+            Controller::executingCallbackOrRunningControllerAction($controller);
         } 
 
         //this line is for when user is using resource
         if ($method == null && self::isRouteMatch($route)) {
-            Controller::executingCallbackOrRunningControllerMethod($controller);
+            Controller::executingCallbackOrRunningControllerAction($controller);
         }
     }
 

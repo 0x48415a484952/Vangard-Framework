@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Septillion\Framework\Controller;
 
 use Septillion\Framework\Request\Request;
@@ -11,7 +13,7 @@ class Controller
     private static $controllerObject;
     private static $controllerAction;
 
-    public static function exe($controllerObject, $controllerAction, $request)
+    public static function exe(Controller $controllerObject, string $controllerAction, Request $request)
     {
         if ($controllerObject) {
             return call_user_func([$controllerObject, $controllerAction], $request);
@@ -21,7 +23,7 @@ class Controller
         
     }
 
-    private static function checkController($controller) 
+    private static function checkController(string $controller) : bool
     {       
         if (!preg_match(Controller::CONTROLLER_REGEX, $controller)) {
             $controllerName = Controller::USERS_CONTROLLER_NAMESPACE.$controller;
@@ -35,44 +37,44 @@ class Controller
         return true;
     }
 
-    private static function executingController($methodName)
+    private static function callingExeMethodWithSameObjectButDifferentAction(string $controllerAction)
     {
-        Controller::exe(self::$controllerObject, $methodName, Request::getInstance());
+        self::exe(self::$controllerObject, $controllerAction, Request::getInstance());
     }
 
-    private static function executingControllerBasedOnHttpMethod($controller)
+    private static function checkingIfControllerIsDefinedAsResourceOrControllerAndAction(string $controller)
     {
         if (self::checkController($controller)) {
-            self::executingController(self::$controllerAction);
+            self::callingExeMethodWithSameObjectButDifferentAction(self::$controllerAction);
         } else {
             switch (strtoupper($_SERVER['REQUEST_METHOD'])) {
                 case 'GET':
                     // if (!empty(self::$routerParameteres)) {
-                    //     self::executingController('show');
+                    //     self::callingExeMethodWithSameObjectButDifferentAction('show');
                     // } else {
-                    //     self::executingController('index');
+                    //     self::callingExeMethodWithSameObjectButDifferentAction('index');
                     // }
-                    self::executingController('index');
+                    self::callingExeMethodWithSameObjectButDifferentAction('index');
                     break;
                 case 'POST':
-                    self::executingController('store');
+                    self::callingExeMethodWithSameObjectButDifferentAction('store');
                     break;
                 case 'PUT':
-                    self::executingController('update');
+                    self::callingExeMethodWithSameObjectButDifferentAction('update');
                     break;
                 case 'DELETE':
-                    self::executingController('destroy');
+                    self::callingExeMethodWithSameObjectButDifferentAction('destroy');
                     break;
             }
         }
     }
 
-    public static function executingCallbackOrRunningControllerMethod($controller)
+    public static function executingCallbackOrRunningControllerAction($controller)
     {
         if (is_callable($controller)) {
             call_user_func($controller, Request::getInstance());
         } else {
-            self::executingControllerBasedOnHttpMethod($controller);
+            self::checkingIfControllerIsDefinedAsResourceOrControllerAndAction($controller);
         }
     }
 }

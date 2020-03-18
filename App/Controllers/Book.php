@@ -2,9 +2,10 @@
 
 namespace Septillion\App\Controllers;
 
+use Septillion\Framework\Controller\Controller;
 use Septillion\Framework\Request\Request;
 
-class Book
+class Book extends Controller
 {
     public function helloWorld(Request $req)
     {
