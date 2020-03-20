@@ -1,20 +1,22 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Septillion\Framework\Model;
 
-use Septillion\Framework\Model\DatabaseConnection;
+use PDO;
 
 class Model
 {
-    protected $conn;
+    protected PDO $conn;
 
     public function __construct()
     {
         $this->conn = DatabaseConnection::getInstance()->getConnection();
     }
 
-    public function getConn()
-    {
-        return $this->conn;
-    }
+    // public function getConn()
+    // {
+    //     return $this->conn;
+    // }
 }

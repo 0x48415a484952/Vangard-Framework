@@ -14,7 +14,7 @@ class Book extends Controller
 
     public function index(Request $req)
     {
-        echo 'this is the index fucntion';
+        echo 'this is the index function';
         echo '<br>';
         echo 'id is ' . $req->params->id;
     }
@@ -28,7 +28,7 @@ class Book extends Controller
 
     public function store(Request $req)
     {
-        echo 'this is the post fucntion';
+        echo 'this is the post function';
         echo '<br>';
         echo 'id is ' . $req->params->id;
         echo '<br>';

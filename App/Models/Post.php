@@ -9,10 +9,10 @@ class Post extends Model
     private const INSERT_POST_INTO_DATABASE = "INSERT INTO posts (title, article, uri) VALUES(:title, :article, :uri)";
     private const GET_POST_BY_ID_OR_URI = "SELECT * FROM posts WHERE id = :id OR uri = :uri";
     private const GET_ALL_POSTS = "SELECT * FROM posts";
-    private $title;
-    private $article;
-    private $uri;
-    private $id;
+    private string $title;
+    private string $article;
+    private string $uri;
+    private string $id;
 
     public function setId($id)
     {

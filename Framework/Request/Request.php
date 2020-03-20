@@ -1,5 +1,7 @@
 <?php 
 
+declare(strict_types=1);
+
 namespace Septillion\Framework\Request;
 
 use Septillion\Framework\Helper\Helper;
@@ -7,11 +9,11 @@ use Septillion\Framework\Request\AssociativeArray;
 
 class Request {
     private static $_instance;
-    public $uri;
-    public $uriParts = [];
-    public $params;
-    public $query;
-    public $body;
+    public string $uri;
+    public array $uriParts = [];
+    public AssociativeArray $params;
+    public AssociativeArray $query;
+    public AssociativeArray $body;
 
     private function __construct() {
         $this->uri = Helper::removeTrailingSlash($_SERVER['REQUEST_URI']);
@@ -21,8 +23,9 @@ class Request {
         $this->params   = new AssociativeArray();
     }
 
-    public static function setPostBodyParams()
+    public static function setPostBodyParams() : void
     {
+        $body = [];
         if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST)) {
             foreach($_POST as $key => $value) {
                 $body[$key] = htmlspecialchars($value);
@@ -32,7 +35,8 @@ class Request {
         }
     }
 
-    public static function getInstance() {
+    public static function getInstance() : self
+    {
         if (!self::$_instance) self::$_instance = new Request();
         return self::$_instance;
     }

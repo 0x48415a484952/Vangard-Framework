@@ -14,7 +14,7 @@ class Home extends Controller
 
     public function index()
     {
-        echo 'this is the index fucntion';
+        echo 'this is the index function';
     }
 
     public function show(Request $req)
@@ -26,7 +26,7 @@ class Home extends Controller
 
     public function store(Request $req)
     {
-        echo 'this is the post fucntion';
+        echo 'this is the post function';
         echo '<br>';
         echo 'id is ' . $req->body;
     }

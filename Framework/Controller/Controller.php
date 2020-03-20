@@ -10,8 +10,8 @@ class Controller
 {
     const CONTROLLER_REGEX = '/[a-zA-Z]+([0-9]+)?[a-zA-Z]+@[a-zA-Z0-9]+/';
     const USERS_CONTROLLER_NAMESPACE = "Septillion\\App\\Controllers\\";
-    private static $controllerObject;
-    private static $controllerAction;
+    private static Controller $controllerObject;
+    private static string $controllerAction;
 
     public static function exe(Controller $controllerObject, string $controllerAction, Request $request)
     {
@@ -37,19 +37,19 @@ class Controller
         return true;
     }
 
-    private static function callingExeMethodWithSameObjectButDifferentAction(string $controllerAction)
+    private static function callingExeMethodWithSameObjectButDifferentAction(string $controllerAction) : void
     {
         self::exe(self::$controllerObject, $controllerAction, Request::getInstance());
     }
 
-    private static function checkingIfControllerIsDefinedAsResourceOrControllerAndAction(string $controller)
+    private static function checkingIfControllerIsDefinedAsResourceOrControllerAndAction(string $controller) : void
     {
         if (self::checkController($controller)) {
             self::callingExeMethodWithSameObjectButDifferentAction(self::$controllerAction);
         } else {
             switch (strtoupper($_SERVER['REQUEST_METHOD'])) {
                 case 'GET':
-                    // if (!empty(self::$routerParameteres)) {
+                    // if (!empty(self::$routerParameters)) {
                     //     self::callingExeMethodWithSameObjectButDifferentAction('show');
                     // } else {
                     //     self::callingExeMethodWithSameObjectButDifferentAction('index');
@@ -69,7 +69,7 @@ class Controller
         }
     }
 
-    public static function executingCallbackOrRunningControllerAction($controller)
+    public static function executingCallbackOrRunningControllerAction($controller) : void
     {
         if (is_callable($controller)) {
             call_user_func($controller, Request::getInstance());

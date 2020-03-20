@@ -1,10 +1,12 @@
 <?php 
 
+declare(strict_types=1);
+
 namespace Septillion\Framework\Request;
 
-class AssociativeArray 
+class AssociativeArray
 {
-    private $_items = [];
+    private array $_items = [];
 
     public function __construct() {
         
@@ -18,13 +20,13 @@ class AssociativeArray
         return $this->_items;
     }
     
-    public function addItem($key, $value) {
+    public function addItem(string $key, string $value) {
         if ($key) {
             $this->_items[$key] = $value;
         }
     }
 
-    public function getItem($key) {
+    public function getItem(string $key) {
         return key_exists($key, $this->_items) ? $this->_items[$key] : null;
     }
 
