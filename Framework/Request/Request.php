@@ -15,8 +15,9 @@ class Request {
     public AssociativeArray $query;
     public AssociativeArray $body;
 
-    private function __construct() {
-        $this->uri = Helper::removeTrailingSlash($_SERVER['REQUEST_URI']);
+    private function __construct()
+    {
+        $this->uri = removeTrailingSlash($_SERVER['REQUEST_URI']);
         $this->uriParts = explode('/', $this->uri);
         $this->query    = new AssociativeArray();
         $this->body     = new AssociativeArray();
@@ -31,7 +32,6 @@ class Request {
                 $body[$key] = htmlspecialchars($value);
             }
             self::getInstance()->body->set($body);
-            // $request->body->set($body);
         }
     }
 

@@ -20,7 +20,6 @@ class Controller
         } else {
             echo 'controller not defined';
         }
-        
     }
 
     private static function checkController(string $controller) : bool
@@ -29,7 +28,8 @@ class Controller
             $controllerName = Controller::USERS_CONTROLLER_NAMESPACE.$controller;
             self::$controllerObject = new $controllerName();
             return false;
-        } 
+        }
+
         $explodedController = explode('@', $controller);
         $controllerName = Controller::USERS_CONTROLLER_NAMESPACE.$explodedController[0];
         self::$controllerObject = new $controllerName();

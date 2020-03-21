@@ -4,7 +4,8 @@
     "description": "A Powerful Blog System",
     "license": "MIT",
     "require": {
-        "php": ">=7.4.2"
+        "php": ">=7.4.2",
+        "ext-pdo": "*"
     },
     "config": {
         "optimize-autoloader": true
@@ -14,10 +15,17 @@
         "email": "hazhiir1811@gmail.com"
     }],
     "autoload": {
+        "files": [
+            "Framework/Helper/Helper.php"
+        ],
         "psr-4": {
             "Septillion\\Framework\\" : "Framework",
             "Septillion\\App\\" : "App"
-
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Septillion\\Tests\\": "Tests"
         }
     },
     "archive": {

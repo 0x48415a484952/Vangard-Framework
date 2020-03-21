@@ -2,21 +2,20 @@
 
 declare(strict_types=1);
 
-namespace Septillion\Framework\Helper;
+if (!function_exists('d')) {
+    function dd(array $data)
+    {
+        echo '<pre>';
+        var_dump($data);
+        echo '</pre>';
+        die();
+    }
+}
 
-class Helper
-{
-    // public static function endsWith($haystack, $needle)
-    // {
-    //     $length = strlen($needle);
-    //     if ($length == 0) {
-    //         return true;
-    //     }
-    //     return (substr($haystack, -$length) === $needle);
-    // }
-
-    public static function removeTrailingSlash(string $url) : string
+if (!function_exists('removeTrailingSlash')) {
+    function removeTrailingSlash(string $url): string
     {
         return rtrim($url, '/');
     }
 }
+
