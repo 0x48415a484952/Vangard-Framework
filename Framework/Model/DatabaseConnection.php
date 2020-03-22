@@ -40,10 +40,10 @@ class DatabaseConnection
         return self::$instance;
     }
 
-//    public function getConnection() : PDO
-//    {
-//        return $this->_pdo;
-//    }
+    public function getConnection() : PDO
+    {
+        return $this->_pdo;
+    }
 
     protected function __clone() 
     {
