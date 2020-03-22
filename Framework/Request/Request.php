@@ -4,9 +4,6 @@ declare(strict_types=1);
 
 namespace Septillion\Framework\Request;
 
-use Septillion\Framework\Helper\Helper;
-use Septillion\Framework\Request\AssociativeArray;
-
 class Request {
     private static $_instance;
     public string $uri;
