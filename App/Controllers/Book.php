@@ -13,7 +13,7 @@ class Book extends Controller
         echo 'id is ' . $req->params->id;
     }
 
-    public function index(Request $req)
+    public function index(Request $req): void
     {
         $response = new Response('is is '. $req->params->id);
         echo $response;

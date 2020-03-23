@@ -17,17 +17,16 @@ class Response
         $this->setContent($content);
     }
 
-
     public function setContent(?string $content): Response
     {
         $this->_content = $content ?? '';
         return $this;
     }
 
-    public function getContent()
+    public function getContent(): string
     {
         header('Content-Type: text/html');
-        return json_encode($this->_content, JSON_THROW_ON_ERROR, 512);
+        return $this->_content;
     }
 
     public function __toString()

@@ -53,4 +53,9 @@ class AssociativeArray
     {
         $this->addItem($key, $value);
     }
+
+    public function __isset($name)
+    {
+        return isset($this->_items[$name]);
+    }
 }
