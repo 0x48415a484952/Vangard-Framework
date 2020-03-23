@@ -18,7 +18,7 @@ class Response
     }
 
 
-    public function setContent(?string $content)
+    public function setContent(?string $content): Response
     {
         $this->_content = $content ?? '';
         return $this;
@@ -27,7 +27,7 @@ class Response
     public function getContent()
     {
         header('Content-Type: text/html');
-        return json_encode($this->_content);
+        return json_encode($this->_content, JSON_THROW_ON_ERROR, 512);
     }
 
     public function __toString()

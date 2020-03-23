@@ -24,15 +24,23 @@ class Router
         // if ($_SERVER['REQUEST_METHOD'] == 'GET' && count($explodedRoute) + 1 == count($request->uriParts)) {
         //     array_push($explodedRoute, ':id');
         // }
-        if (count($request->uriParts) != count($explodedRoute)) return false;
+        if (count($request->uriParts) !== count($explodedRoute)) {
+            return false;
+        }
         foreach ($explodedRoute as $key => $value) {
-            if (!array_key_exists($key, $request->uriParts)) return false;
+            if (!array_key_exists($key, $request->uriParts)) {
+                return false;
+            }
             if (preg_match('/^:/', $value)) {
                 $trimmedValue = substr($value, 1);
                 self::$routerParameters[$trimmedValue] = $request->uriParts[$key];
-            } elseif ($value != $request->uriParts[$key]) return false;
+            } elseif ($value !== $request->uriParts[$key]) {
+                return false;
+            }
         }
-        if (count(self::$routerParameters)) $request->params->set(self::$routerParameters);
+        if (count(self::$routerParameters)) {
+            $request->params->set(self::$routerParameters);
+        }
         ////demo
             Request::setPostBodyParams();
         ////end of demo
@@ -41,12 +49,14 @@ class Router
 
     private static function finalCall(string $route, $controller, string $method = null) : void
     {
-        if ($method != null && self::isRouteMatch($route) && $_SERVER['REQUEST_METHOD'] == $method)
+        if ($method !== null && $_SERVER['REQUEST_METHOD'] === $method && self::isRouteMatch($route)) {
             Controller::executingCallbackOrRunningControllerAction($controller);
+        }
 
         //this line is for when user is using resource
-        if ($method == null && self::isRouteMatch($route))
+        if ($method === null && self::isRouteMatch($route)) {
             Controller::executingCallbackOrRunningControllerAction($controller);
+        }
     }
 
     public static function get(string $route, $controller) : void

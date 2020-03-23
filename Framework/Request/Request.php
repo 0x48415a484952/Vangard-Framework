@@ -26,7 +26,7 @@ class Request {
     public static function setPostBodyParams() : void
     {
         $body = [];
-        if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST)) {
+        if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST)) {
             foreach($_POST as $key => $value) {
                 $body[$key] = htmlspecialchars($value);
             }
