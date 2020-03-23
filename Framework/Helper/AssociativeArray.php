@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Septillion\Framework\Request;
+namespace Septillion\Framework\Helper;
 
 class AssociativeArray
 {
@@ -13,17 +13,17 @@ class AssociativeArray
         
     }
 
-    public function set(array $array)
+    public function set(array $array): void
     {
         $this->_items = $array;
     }
 
-    public function get()
+    public function get(): array
     {
         return $this->_items;
     }
     
-    public function addItem(string $key, string $value)
+    public function addItem(string $key, string $value): void
     {
         if ($key) {
             $this->_items[$key] = $value;
@@ -32,7 +32,7 @@ class AssociativeArray
 
     public function getItem(string $key)
     {
-        return key_exists($key, $this->_items) ? $this->_items[$key] : null;
+        return $this->_items[$key] ?? null;
     }
 
     /* ==================== Reserved for better implementation ========================= */

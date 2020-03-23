@@ -4,6 +4,7 @@ namespace Septillion\App\Controllers;
 
 use Septillion\Framework\Controller\Controller;
 use Septillion\Framework\Request\Request;
+use Septillion\Framework\Response\Response;
 
 class Book extends Controller
 {
@@ -14,9 +15,9 @@ class Book extends Controller
 
     public function index(Request $req)
     {
-        echo 'this is the index function';
-        echo '<br>';
-        echo 'id is ' . $req->params->id;
+        $response = new Response('is is '. $req->params->id);
+        echo $response;
+//        echo 'id is ' . $req->params->id;
     }
 
     public function show(Request $req)

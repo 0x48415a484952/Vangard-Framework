@@ -8,30 +8,29 @@ use Septillion\Framework\Request\Request;
 
 class Controller
 {
-    const CONTROLLER_REGEX = '/[a-zA-Z]+([0-9]+)?[a-zA-Z]+@[a-zA-Z0-9]+/';
-    const USERS_CONTROLLER_NAMESPACE = "Septillion\\App\\Controllers\\";
+    private const CONTROLLER_REGEX = '/[a-zA-Z]+(\d+)?[a-zA-Z]+@[a-zA-Z0-9]+/';
+    private const USERS_CONTROLLER_NAMESPACE = "Septillion\\App\\Controllers\\";
     private static Controller $controllerObject;
     private static string $controllerAction;
 
     public static function exe(Controller $controllerObject, string $controllerAction, Request $request)
     {
         if ($controllerObject) {
-            return call_user_func([$controllerObject, $controllerAction], $request);
-        } else {
-            echo 'controller not defined';
+            return $controllerObject->$controllerAction($request);
         }
+        return 'controller not defined';
     }
 
     private static function checkController(string $controller) : bool
     {       
-        if (!preg_match(Controller::CONTROLLER_REGEX, $controller)) {
-            $controllerName = Controller::USERS_CONTROLLER_NAMESPACE.$controller;
+        if (!preg_match(self::CONTROLLER_REGEX, $controller)) {
+            $controllerName = self::USERS_CONTROLLER_NAMESPACE.$controller;
             self::$controllerObject = new $controllerName();
             return false;
         }
 
         $explodedController = explode('@', $controller);
-        $controllerName = Controller::USERS_CONTROLLER_NAMESPACE.$explodedController[0];
+        $controllerName = self::USERS_CONTROLLER_NAMESPACE.$explodedController[0];
         self::$controllerObject = new $controllerName();
         self::$controllerAction = $explodedController[1];
         return true;
@@ -72,7 +71,7 @@ class Controller
     public static function executingCallbackOrRunningControllerAction($controller) : void
     {
         if (is_callable($controller)) {
-            call_user_func($controller, Request::getInstance());
+            $controller(Request::getInstance());
         } else {
             self::checkingIfControllerIsDefinedAsResourceOrControllerAndAction($controller);
         }

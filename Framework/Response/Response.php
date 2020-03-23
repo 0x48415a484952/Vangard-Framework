@@ -5,17 +5,33 @@ declare(strict_types=1);
 namespace Septillion\Framework\Response;
 
 
+use Septillion\Framework\Helper\AssociativeArray;
+
 class Response
 {
-    const CONTENT_TYPE_TEXT_HTML = 'Content-Type';
-    private array $_headers;
     private string $_content;
-    private string $_statusCode;
+    private AssociativeArray $_headers;
 
-    public function __construct(string $content, string $statusCode, array $headers)
+    public function __construct(?string $content = '')
     {
-        $this->_content = $content;
-        $this->_statusCode = $statusCode;
-        $this->_headers = $headers;
+        $this->setContent($content);
+    }
+
+
+    public function setContent(?string $content)
+    {
+        $this->_content = $content ?? '';
+        return $this;
+    }
+
+    public function getContent()
+    {
+        header('Content-Type: text/html');
+        return json_encode($this->_content);
+    }
+
+    public function __toString()
+    {
+        return $this->getContent();
     }
 }

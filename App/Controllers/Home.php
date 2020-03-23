@@ -4,6 +4,7 @@ namespace Septillion\App\Controllers;
 
 use Septillion\Framework\Controller\Controller;
 use Septillion\Framework\Request\Request;
+use Septillion\Framework\Response\Response;
 
 class Home extends Controller
 {
@@ -12,9 +13,13 @@ class Home extends Controller
         echo 'id is ' . $req->params->id;
     }
 
-    public function index()
+    public function index(Request $req)
     {
-        echo 'this is the index function';
+//        echo 'this is the index function 123123';
+//        echo '<br>';
+        $id = 'id is'.$req->params->id;
+        $response = new Response($id);
+        echo $response;
     }
 
     public function show(Request $req)
@@ -28,7 +33,6 @@ class Home extends Controller
     {
         echo 'this is the post function';
         echo '<br>';
-        echo 'id is ' . $req->body;
     }
 
     public function update(Request $req)
