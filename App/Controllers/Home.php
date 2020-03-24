@@ -17,9 +17,9 @@ class Home extends Controller
     {
 //        echo 'this is the index function 123123';
 //        echo '<br>';
-        $id = 'id is'.$req->params->id;
+        $id = 'id is'.$req->params->getItem('id');
         $response = new Response($id);
-        echo $response;
+        $response->send();
     }
 
     public function show(Request $req)

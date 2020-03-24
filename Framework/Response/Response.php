@@ -27,8 +27,9 @@ class Response
 
     private string $_content;
     private int $_statusCode;
+    private array $_headers;
 
-    public function __construct(?string $content, ?int $status)
+    public function __construct(?string $content, ?int $status = null, ?array $_headers = null)
     {
         $this->setContent($content);
         $this->setStatusCode($status);
@@ -39,7 +40,7 @@ class Response
         $this->_content = $content ?? '';
     }
 
-    public function setStatusCode(int $status): void
+    public function setStatusCode(?int $status): void
     {
         $this->_statusCode = $status ?? self::HTTP_OK;
     }

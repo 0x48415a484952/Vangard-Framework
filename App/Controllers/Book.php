@@ -31,7 +31,8 @@ class Book extends Controller
     {
         echo 'this is the post function';
         echo '<br>';
-        echo 'id is ' . $req->params->id;
+        echo 'id is '. $req->params->getItem('id');
+//        echo 'id is ' . $req->params->id;
         echo '<br>';
         echo 'post body sent as id is ' . $req->body->id;
         echo '<br>';

@@ -22,13 +22,6 @@ class AssociativeArray
     {
         return $this->_items;
     }
-    
-    public function addItem(string $key, string $value): void
-    {
-        if ($key) {
-            $this->_items[$key] = $value;
-        }
-    }
 
     public function getItem(string $key)
     {
@@ -43,19 +36,4 @@ class AssociativeArray
     //         $this->set($data);
     //     }
     // }
-
-    public function __get(string $key)
-    {
-        return $this->getItem($key);
-    }
-
-    public function __set(string $key, $value)
-    {
-        $this->addItem($key, $value);
-    }
-
-    public function __isset($name)
-    {
-        return isset($this->_items[$name]);
-    }
 }
