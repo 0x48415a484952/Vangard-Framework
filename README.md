@@ -29,7 +29,7 @@ we follow PHP Framework Interop Group standdards so take a look at php-fig.com
 
 ## Contributing
 
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
+soon
 
 ## Versioning
 
