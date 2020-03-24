@@ -15,8 +15,8 @@ class Book extends Controller
 
     public function index(Request $req): void
     {
-        $response = new Response('is is '. $req->params->id);
-        echo $response;
+//        $response = new Response('is is '. $req->params->id, null, null);
+//        echo $response;
 //        echo 'id is ' . $req->params->id;
     }
 

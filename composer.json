@@ -1,12 +1,12 @@
 {
-    "name": "Septillion",
     "type": "project",
     "description": "A Powerful Blog System",
     "license": "MIT",
     "require": {
         "php": ">=7.4.2",
-      "ext-pdo": "*",
-      "ext-json": "*"
+        "ext-pdo": "*",
+        "ext-json": "*",
+        "ext-http": "*"
     },
     "config": {
         "optimize-autoloader": true

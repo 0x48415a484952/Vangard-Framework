@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 if (!function_exists('d')) {
-    function dd(array $data)
+    function dd($data)
     {
         echo '<pre>';
         var_dump($data);
