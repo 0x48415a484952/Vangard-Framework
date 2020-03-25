@@ -20,7 +20,7 @@ using phpUnit as the unit testing framework
 
 ### coding style
 
-we follow PHP Framework Interop Group standdards so take a look at * [php-fig](https://php-fig.com)
+we follow PHP Framework Interop Group standdards so take a look at [php-fig](https://php-fig.com)
 
 
 ## Built With
