@@ -18,7 +18,7 @@ voila.
 using phpUnit as the unit testing framework
 
 
-### And coding style tests
+### coding style
 
 we follow PHP Framework Interop Group standdards so take a look at php-fig.com
 
