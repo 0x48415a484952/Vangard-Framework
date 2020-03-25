@@ -10,7 +10,7 @@ class Book extends Controller
 {
     public function helloWorld(Request $req)
     {
-        echo 'id is ' . $req->params->id;
+        echo 'id is ' . $req->params->getItem('id');
     }
 
     public function index(Request $req): void
@@ -24,34 +24,37 @@ class Book extends Controller
     {
         echo 'this is the show function';
         echo '<br>';
-        echo 'id is ' . $req->params->id;
+        echo 'id is ' . $req->params->getItem('id');
     }
 
     public function store(Request $req)
     {
+        $response = new Response('this is a response object');
+        $response->send();
+        echo '<br>';
         echo 'this is the post function';
         echo '<br>';
         echo 'id is '. $req->params->getItem('id');
 //        echo 'id is ' . $req->params->id;
         echo '<br>';
-        echo 'post body sent as id is ' . $req->body->id;
+        echo 'post body sent as id is ' . $req->body->getItem('id');
         echo '<br>';
-        echo 'post body sent as string is' . $req->body->string;
+        echo 'post body sent as string is' . $req->body->getItem('string');
         echo '<br>';
-        if ($req->body->whatever) echo 'post body sent as whatever is' . $req->body->whatever;
+        if ($req->body->getItem('whatever')) echo 'post body sent as whatever is' . $req->body->getItem('whatever');
     }
 
     public function update(Request $req)
     {
         echo 'this is the update function';
         echo '<br>';
-        echo 'id is ' . $req->params->id;
+        echo 'id is ' . $req->params->getItem('id');
     }
 
     public function destroy(Request $req)
     {
         echo 'this is the delete function';
         echo '<br>';
-        echo 'id is ' . $req->params->id;
+        echo 'id is ' . $req->params->getItem('id');
     }
 }

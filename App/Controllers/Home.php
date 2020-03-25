@@ -10,7 +10,7 @@ class Home extends Controller
 {
     public function helloWorld(Request $req)
     {
-        echo 'id is ' . $req->params->id;
+        echo 'id is ' . $req->params->getItem('id');
     }
 
     public function index(Request $req)
@@ -26,10 +26,10 @@ class Home extends Controller
     {
         echo 'this is the show function';
         echo '<br>';
-        echo 'id is ' . $req->params->id;
+        echo 'id is ' . $req->params->getItem('id');
     }
 
-    public function store(Request $req)
+    public function store()
     {
         echo 'this is the post function';
         echo '<br>';
@@ -39,13 +39,13 @@ class Home extends Controller
     {
         echo 'this is the update function';
         echo '<br>';
-        echo 'id is ' . $req->params->id;
+        echo 'id is ' . $req->params->getItem('id');
     }
 
     public function destroy(Request $req)
     {
         echo 'this is the delete function';
         echo '<br>';
-        echo 'id is ' . $req->params->id;
+        echo 'id is ' . $req->params->getItem('id');
     }
 }

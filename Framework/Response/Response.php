@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Septillion\Framework\Response;
 
-
 class Response
 {
     public const HTTP_OK = 200;
@@ -27,33 +26,45 @@ class Response
 
     private string $_content;
     private int $_statusCode;
-    private array $_headers;
 
-    public function __construct(?string $content, ?int $status = null, ?array $_headers = null)
+    public function __construct(?string $content, ?int $status = null)
     {
-        $this->setContent($content);
-        $this->setStatusCode($status);
-    }
-
-    public function setContent(?string $content): void
-    {
-        $this->_content = $content ?? '';
-    }
-
-    public function setStatusCode(?int $status): void
-    {
+        $this->_content = $content;
         $this->_statusCode = $status ?? self::HTTP_OK;
     }
 
-    public function getContent(): string
+    public function send(?array $headers = null): void
     {
-        return $this->_content;
-    }
+        foreach ($headers as $key => $value) {
+            switch ($key) {
+                //CT stands for Content-Type
+                case 'CT':
+                    switch ($value) {
+                        case 'text/h':
+                            header('Content-Type: text/html');
+                            break;
+                        case 'text/p':
+                            header('Content-Type: text/plain');
+                            break;
+                        case 'json':
+                            header('Content-Type: application/json');
+                            $this->_content = json_encode($this->_content, JSON_THROW_ON_ERROR, 512);
+                            break;
+                    }
+                break;
+                //XBP stands for X-Powered-By
+                case 'XBP':
+                    switch ($value) {
+                        case 'hazhir':
+                            header('X-Powered-By: Hazhir');
+                            break;
 
-    public function send(): void
-    {
+                    }
+                break;
+            }
+        }
         http_response_code($this->_statusCode);
-        echo $this->getContent();
+        echo $this->_content;
     }
 
 }

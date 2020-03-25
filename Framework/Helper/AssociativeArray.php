@@ -6,14 +6,14 @@ namespace Septillion\Framework\Helper;
 
 class AssociativeArray
 {
-    private array $_items = [];
+    private array $_items;
 
     public function __construct()
     {
         
     }
 
-    public function set(array $array): void
+    public function set(?array $array): void
     {
         $this->_items = $array;
     }

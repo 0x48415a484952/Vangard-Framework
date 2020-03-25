@@ -12,19 +12,22 @@ require __DIR__ .'/../../vendor/autoload.php';
 // Request::getInstance();
 
 Router::get('/Septillion/posts/:id', static function(Request $req) {
-    $response = new Response('this is a post with id ' . $req->params->id, Response::HTTP_OK);
-//    dd($response);
-//    echo $response;
-    $response->send();
+    $response = new Response('this is a post with id ' . $req->params->getItem('id'));
+    $response->send(
+        [
+            'CT' => 'text/h',
+            'XBP' => 'hazhir'
+        ]
+    );
 });
 
 
 Router::get('/Septillion/posts/:id/book', static function(Request $req) {
-    echo 'this is a book with id ' . $req->params->id;
+    echo 'this is a book with id ' . $req->params->getItem('id');
 });
 
 Router::post('/Septillion/posts/:id/book', static function(Request $req) {
-    echo 'this is a book with id and the method is post ' . $req->params->id;
+    echo 'this is a book with id and the method is post ' . $req->params->getItem('id');
 });
 
 // Router::get('/Septillion/:id', 'Home@helloWorld');
