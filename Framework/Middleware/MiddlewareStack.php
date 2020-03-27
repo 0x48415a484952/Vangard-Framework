@@ -7,7 +7,10 @@ namespace Septillion\Framework\Middleware;
 use Septillion\Framework\Request\Request;
 use Septillion\Framework\Response\Response;
 
-interface MiddlewareInterface
+class MiddlewareStack
 {
-    public function __invoke(Request $request, callable $next): self;
+    protected array $_stack = [
+        FirstMiddleware::class,
+        SecondMiddleware::class
+    ];
 }
