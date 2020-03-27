@@ -13,4 +13,6 @@ class MiddlewareStack
         FirstMiddleware::class,
         SecondMiddleware::class
     ];
+
+
 }

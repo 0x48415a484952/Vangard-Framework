@@ -6,17 +6,10 @@ namespace Septillion\Framework\Model;
 
 use PDO;
 use PDOException;
+use Septillion\App\Configs\DatabaseConfig;
 
-class DatabaseConnection
+class DatabaseConnection extends DatabaseConfig
 {
-    private string $_dsn = 'pgsql:dbname=blog;host=127.0.0.1';
-    private string $_user = 'hazhir';
-    private string $_pass = '';
-    private array $_options = [
-        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-        PDO::ATTR_EMULATE_PREPARES => false,
-    ];
     private PDO $_pdo;
     protected static DatabaseConnection $instance;
    
@@ -24,11 +17,16 @@ class DatabaseConnection
     {
         try
         {
-            $this->_pdo = new PDO($this->_dsn, $this->_user, $this->_pass, $this->_options);
+            $this->_pdo = new PDO(
+                DatabaseConfig::DSN,
+                DatabaseConfig::USERNAME,
+                DatabaseConfig::PASSWORD,
+                DatabaseConfig::OPTIONS
+            );
         }
         catch(PDOException $e)
         {
-            echo 'Connection failed: ' . $this->e->getMessage();
+            echo 'Connection failed: ' . $e->getMessage();
         }
     }
 
