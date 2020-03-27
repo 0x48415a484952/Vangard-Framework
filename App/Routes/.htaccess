@@ -1,4 +1,4 @@
-AddType application/x-httpd-php .asp .py .pl .haza .rb .html
+#AddType application/x-httpd-php .asp .py .pl .haza .rb .html
 
 
 # RewriteEngine On
