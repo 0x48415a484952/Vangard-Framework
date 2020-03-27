@@ -4,12 +4,11 @@ declare(strict_types=1);
 
 namespace Septillion\Framework\Controller;
 
+use Septillion\App\Configs\ControllerConfig;
 use Septillion\Framework\Request\Request;
 
-class Controller
+class Controller extends ControllerConfig
 {
-    private const CONTROLLER_REGEX = '/[a-zA-Z]+(\d+)?[a-zA-Z]+@[a-zA-Z0-9]+/';
-    private const USERS_CONTROLLER_NAMESPACE = "Septillion\\App\\Controllers\\";
     private static Controller $controllerObject;
     private static string $controllerAction;
 
@@ -23,14 +22,14 @@ class Controller
 
     private static function checkController(string $controller) : bool
     {       
-        if (!preg_match(self::CONTROLLER_REGEX, $controller)) {
-            $controllerName = self::USERS_CONTROLLER_NAMESPACE.$controller;
+        if (!preg_match(ControllerConfig::CONTROLLER_REGEX, $controller)) {
+            $controllerName = ControllerConfig::USERS_CONTROLLER_NAMESPACE.$controller;
             self::$controllerObject = new $controllerName();
             return false;
         }
 
         $explodedController = explode('@', $controller);
-        $controllerName = self::USERS_CONTROLLER_NAMESPACE.$explodedController[0];
+        $controllerName = ControllerConfig::USERS_CONTROLLER_NAMESPACE.$explodedController[0];
         self::$controllerObject = new $controllerName();
         self::$controllerAction = $explodedController[1];
         return true;
