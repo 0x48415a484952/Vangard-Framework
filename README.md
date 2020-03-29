@@ -1,5 +1,5 @@
-[contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)
-[GitHub license](https://img.shields.io/badge/license-MIT-blueviolet)
+![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)
+![GitHub license](https://img.shields.io/badge/license-MIT-blueviolet)
 
 # Septillion
 
