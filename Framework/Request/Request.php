@@ -5,8 +5,10 @@ declare(strict_types=1);
 namespace Septillion\Framework\Request;
 
 use Septillion\Framework\Helper\AssociativeArray;
+use Septillion\Framework\Middleware\Middleware;
 
 class Request {
+    private static $_middleware;
     private static $_instance;
     public string $uri;
     public array $uriParts = [];
@@ -36,7 +38,15 @@ class Request {
 
     public static function getInstance() : self
     {
-        if (!self::$_instance) self::$_instance = new Request();
+        if (!self::$_instance) {
+            self::$_instance = new Request();
+
+            self::$_middleware = new Middleware();
+            self::$_middleware->run(self::$_instance);
+        }
+
+        self::$_middleware->run(self::$_instance);
+
         return self::$_instance;
     }
 }

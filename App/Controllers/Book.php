@@ -41,6 +41,8 @@ class Book extends Controller
         echo '<br>';
         echo 'post body sent as string is' . $req->body->getItem('string');
         echo '<br>';
+        echo 'firstMiddleware sent as string is' . $req->body->getItem('firstMiddleware');
+        echo '<br>';
         if ($req->body->getItem('whatever')) echo 'post body sent as whatever is' . $req->body->getItem('whatever');
     }
 

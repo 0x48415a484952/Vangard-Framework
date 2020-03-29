@@ -1,16 +1,16 @@
 <?php
 
+declare(strict_types=1);
 
 namespace Septillion\Framework\Middleware;
 
-
 use Septillion\Framework\Request\Request;
-use Septillion\Framework\Response\Response;
 
 class SecondMiddleware implements MiddlewareInterface
 {
-    public function __invoke(Request $request, callable $next): MiddlewareInterface
+    public function __invoke(Request $request, callable $next): Request
     {
-        echo 'second middleware';
+        $request->params->setItem('secondMiddleware', '2');
+        return $next($request);
     }
 }

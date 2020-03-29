@@ -28,6 +28,11 @@ class AssociativeArray
         return $this->_items[$key] ?? null;
     }
 
+    public function setItem($key, $value): void
+    {
+        $this->_items[$key] = $value;
+    }
+
     /* ==================== Reserved for better implementation ========================= */
     // public function __invoke($data = null){
     //     if( $data === null ){
