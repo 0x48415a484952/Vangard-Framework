@@ -14,9 +14,4 @@ class Model
     {
         $this->conn = DatabaseConnection::getInstance()->getConnection();
     }
-
-    // public function getConn()
-    // {
-    //     return $this->conn;
-    // }
 }

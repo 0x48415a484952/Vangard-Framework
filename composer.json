@@ -1,6 +1,7 @@
 {
+    "name": "hazhir/septillion",
     "type": "project",
-    "description": "A Powerful Blog System",
+    "description": "A Simple Framework",
     "license": "MIT",
     "require": {
         "php": ">=7.4.2",
@@ -13,7 +14,7 @@
     },
     "authors": [{
         "name": "Hazhir Ahmadzadeh",
-        "email": "hazhiir1811@gmail.com"
+        "email": "ahmadzadehhazhir@gmail.com"
     }],
     "autoload": {
         "files": [

@@ -8,7 +8,8 @@ use Septillion\Framework\Helper\AssociativeArray;
 use Septillion\Framework\Middleware\Middleware;
 
 class Request {
-    private static $_middleware;
+    //commented out just in time
+//    private static $_middleware;
     private static $_instance;
     public string $uri;
     public array $uriParts = [];
@@ -41,11 +42,13 @@ class Request {
         if (!self::$_instance) {
             self::$_instance = new Request();
 
-            self::$_middleware = new Middleware();
-            self::$_middleware->run(self::$_instance);
+            //commented out just in time
+//            self::$_middleware = new Middleware();
+//            self::$_middleware->run(self::$_instance);
         }
 
-        self::$_middleware->run(self::$_instance);
+        //commented out just in time
+//        self::$_middleware->run(self::$_instance);
 
         return self::$_instance;
     }

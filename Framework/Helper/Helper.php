@@ -18,4 +18,3 @@ if (!function_exists('removeTrailingSlash')) {
         return rtrim($url, '/');
     }
 }
-

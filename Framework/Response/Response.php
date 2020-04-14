@@ -35,36 +35,35 @@ class Response
 
     public function send(?array $headers = null): void
     {
-        foreach ($headers as $key => $value) {
-            switch ($key) {
-                //CT stands for Content-Type
-                case 'CT':
-                    switch ($value) {
-                        case 'text/h':
-                            header('Content-Type: text/html');
-                            break;
-                        case 'text/p':
-                            header('Content-Type: text/plain');
-                            break;
-                        case 'json':
-                            header('Content-Type: application/json');
-                            $this->_content = json_encode($this->_content, JSON_THROW_ON_ERROR, 512);
-                            break;
-                    }
-                break;
-                //XBP stands for X-Powered-By
-                case 'XBP':
-                    switch ($value) {
-                        case 'hazhir':
-                            header('X-Powered-By: Hazhir');
-                            break;
-
-                    }
-                break;
-            }
-        }
+//        foreach ($headers as $key => $value) {
+//            switch ($key) {
+//                //CT stands for Content-Type
+//                case 'CT':
+//                    switch ($value) {
+//                        case 'text/h':
+//                            header('Content-Type: text/html');
+//                            break;
+//                        case 'text/p':
+//                            header('Content-Type: text/plain');
+//                            break;
+//                        case 'json':
+//                            header('Content-Type: application/json');
+//                            $this->_content = json_encode($this->_content, JSON_THROW_ON_ERROR, 512);
+//                            break;
+//                    }
+//                break;
+//                //XBP stands for X-Powered-By
+//                case 'XBP':
+//                    switch ($value) {
+//                        case 'hazhir':
+//                            header('X-Powered-By: Hazhir');
+//                            break;
+//
+//                    }
+//                break;
+//            }
+//        }
         http_response_code($this->_statusCode);
         echo $this->_content;
     }
-
 }

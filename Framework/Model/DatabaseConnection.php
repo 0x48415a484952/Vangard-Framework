@@ -47,4 +47,4 @@ class DatabaseConnection extends DatabaseConfig
     {
         /* nothing here is needed */
     }
-} 
+}
