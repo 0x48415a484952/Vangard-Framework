@@ -28,10 +28,10 @@ class Router
         $curlyPosition = null;
         $explodedRoute = explode('/', $route);
         $request = Request::getInstance();
-        /// the below lines are for creating resources as well as automatic show method in a controller
-        // if ($_SERVER['REQUEST_METHOD'] == 'GET' && count($explodedRoute) + 1 == count($request->uriParts)) {
-        //     array_push($explodedRoute, ':id');
-        // }
+//        / the below lines are for creating resources as well as automatic show method in a controller
+//         if ($_SERVER['REQUEST_METHOD'] === 'GET' && count($explodedRoute) + 1 === count($request->uriParts)) {
+//             $explodedRoute[] = ':id';
+//         }
         if (count($request->uriParts) !== count($explodedRoute)) {
             return false;
         }
@@ -46,12 +46,13 @@ class Router
                     if (self::checkFilter($filter, $request, $key)) {
                         $trimmedValue = substr($value, 1, $curlyPosition - 1);
                         self::$routerParameters[$trimmedValue] = $request->uriParts[$key];
+                    } else {
+                        return false;
                     }
                 }
-                else {
-                    $trimmedValue = substr($value, 1);
-                    self::$routerParameters[$trimmedValue] = $request->uriParts[$key];
-                }
+                $trimmedValue = substr($value, 1);
+                self::$routerParameters[$trimmedValue] = $request->uriParts[$key];
+
             } elseif ($value !== $request->uriParts[$key]) {
                 return false;
             }
