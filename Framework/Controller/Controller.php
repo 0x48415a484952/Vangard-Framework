@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Septillion\Framework\Controller;
 
+use RuntimeException;
 use Septillion\App\Configs\ControllerConfig;
 use Septillion\Framework\Request\Request;
 
@@ -17,7 +18,7 @@ class Controller extends ControllerConfig
         if ($controllerObject) {
             return $controllerObject->$controllerAction($request);
         }
-        return 'controller not defined';
+        throw new RuntimeException('controller not defined');
     }
 
     private static function checkController(string $controller) : bool
