@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 declare(strict_types=1);
 
@@ -10,10 +10,10 @@ class AssociativeArray
 
     public function __construct()
     {
-        
+        $this->_items = [];
     }
 
-    public function set(?array $array): void
+    public function set(array $array): void
     {
         $this->_items = $array;
     }

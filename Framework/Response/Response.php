@@ -24,13 +24,18 @@ class Response
     public const HTTP_INTERNAL_SERVER_ERROR = 500;
     public const HTTP_NOT_IMPLEMENTED = 501;
 
-    private string $_content;
+    private ?string $_content;
     private int $_statusCode;
 
     public function __construct(?string $content, ?int $status = null)
     {
         $this->_content = $content;
         $this->_statusCode = $status ?? self::HTTP_OK;
+    }
+
+    public function add(string $content): void
+    {
+        $this->_content .= $content;
     }
 
     public function send(?array $headers = null): void
