@@ -1,3 +1,3 @@
 # Options All -Indexes
 RewriteEngine On
-RewriteRule ^([a-zA-Z0-9\-_/]*)$ App/Routes/Route.php
+RewriteRule ^([a-zA-Z0-9\-_/]*)$ App/Routes/index.php
