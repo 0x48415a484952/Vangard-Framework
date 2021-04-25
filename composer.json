@@ -6,8 +6,7 @@
     "require": {
         "php": ">=7.4.2",
         "ext-pdo": "*",
-        "ext-json": "*",
-        "ext-http": "*"
+        "ext-json": "*"
     },
     "config": {
         "optimize-autoloader": true
