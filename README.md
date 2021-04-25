@@ -12,7 +12,7 @@ this is a PHP framework based on OOP architecture with a very simple base code t
 
 2. enter "composer require hazhir/septillion" 
 
-3. php -S 127.0.0.1 
+3. php -S 127.0.0.1:8000 -t App/Routes/
 
 4. done
 
