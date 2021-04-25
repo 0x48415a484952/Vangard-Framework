@@ -11,7 +11,13 @@ this is a PHP framework based on OOP architecture with a very simple base code t
 
 ## Getting Started
 
-very soon i will write a complete documentation over using the framework but if you are coming from laravel or symfony then there should not be a problem cause septillion is much more easier to use.
+1. first you need to install composer
+
+2. enter "composer require hazhir/septillion" 
+
+3. php -S 127.0.0.1 
+
+4. done
 
 ### Installing
 
