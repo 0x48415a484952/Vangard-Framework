@@ -9,7 +9,7 @@
 this is a PHP framework based on OOP architecture with a very simple base code that everyone could understand it in no time!
 
 
-## Getting Started
+### Installing
 
 1. first you need to install composer
 
@@ -18,11 +18,6 @@ this is a PHP framework based on OOP architecture with a very simple base code t
 3. php -S 127.0.0.1 
 
 4. done
-
-### Installing
-
-not that hard just need a web server (preferably apache) and of course php installed, copy your files to the root directory and 
-voila.
 
 ## Running the tests
 
