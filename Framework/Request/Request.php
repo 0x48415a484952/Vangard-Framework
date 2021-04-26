@@ -10,6 +10,7 @@ use Septillion\Framework\Middleware\Middleware;
 class Request {
     //commented out just in time
 //    private static $_middleware;
+
     private static $instance;
     public string $uri;
     public array $uriParts = [];

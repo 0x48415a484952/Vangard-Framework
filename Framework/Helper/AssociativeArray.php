@@ -6,31 +6,31 @@ namespace Septillion\Framework\Helper;
 
 class AssociativeArray
 {
-    private array $_items;
+    private array $items;
 
     public function __construct()
     {
-        $this->_items = [];
+        $this->items = [];
     }
 
     public function set(array $array): void
     {
-        $this->_items = $array;
+        $this->items = $array;
     }
 
     public function get(): array
     {
-        return $this->_items;
+        return $this->items;
     }
 
     public function getItem(string $key)
     {
-        return $this->_items[$key] ?? null;
+        return $this->items[$key] ?? null;
     }
 
     public function setItem($key, $value): void
     {
-        $this->_items[$key] = $value;
+        $this->items[$key] = $value;
     }
 
     /* ==================== Reserved for better implementation ========================= */

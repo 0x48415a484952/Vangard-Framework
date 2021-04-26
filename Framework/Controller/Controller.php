@@ -25,17 +25,14 @@ class Controller
     {       
         $controllerPath = getenv('CONTROLLERS_PATH');
         $controllerRegex = getenv('CONTROLLERS_REGEX');
-        // if (!preg_match(ControllerConfig::CONTROLLER_REGEX, $controller)) {
+    
         if (!preg_match($controllerRegex, $controller)) {
-            // $controllerName = ControllerConfig::USERS_CONTROLLER_NAMESPACE.$controller;
-            
             $controllerName = $controllerPath.$controller;
             self::$controllerObject = new $controllerName();
             return false;
         }
 
         $explodedController = explode('@', $controller);
-        // $controllerName = ControllerConfig::USERS_CONTROLLER_NAMESPACE.$explodedController[0];
         $controllerName = $controllerPath.$explodedController[0];
         self::$controllerObject = new $controllerName();
         self::$controllerAction = $explodedController[1];
@@ -52,25 +49,13 @@ class Controller
         if (self::checkController($controller)) {
             self::callingExeMethodWithSameObjectButDifferentAction(self::$controllerAction);
         } else {
-            switch (strtoupper($_SERVER['REQUEST_METHOD'])) {
-                case 'GET':
-                    // if (!empty(self::$routerParameters)) {
-                    //     self::callingExeMethodWithSameObjectButDifferentAction('show');
-                    // } else {
-                    //     self::callingExeMethodWithSameObjectButDifferentAction('index');
-                    // }
-                    self::callingExeMethodWithSameObjectButDifferentAction('index');
-                    break;
-                case 'POST':
-                    self::callingExeMethodWithSameObjectButDifferentAction('store');
-                    break;
-                case 'PUT':
-                    self::callingExeMethodWithSameObjectButDifferentAction('update');
-                    break;
-                case 'DELETE':
-                    self::callingExeMethodWithSameObjectButDifferentAction('destroy');
-                    break;
-            }
+
+            match(strtoupper($_SERVER['REQUEST_METHOD'])) {
+                'GET' => self::callingExeMethodWithSameObjectButDifferentAction('index'),
+                'POST' => self::callingExeMethodWithSameObjectButDifferentAction('store'),
+                'PUT' => self::callingExeMethodWithSameObjectButDifferentAction('update'),
+                'DELETE' => self::callingExeMethodWithSameObjectButDifferentAction('destroy')
+            };
         }
     }
 

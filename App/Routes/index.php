@@ -11,7 +11,6 @@ use Septillion\Framework\Router\Router;
 use Septillion\Framework\Request\Request;
 
 require __DIR__ .'/../../vendor/autoload.php';
-
 (new DotEnv('../../.env'))->loadFile();
 
 Router::get('/categories/:id{digits}/:someshit2{digits}', 'CategoryController@getCategoryWithId');

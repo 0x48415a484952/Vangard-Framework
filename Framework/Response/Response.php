@@ -38,37 +38,42 @@ class Response
         $this->content .= $content;
     }
 
-    public function send(?array $headers = null): void
+    public function send(?array $headers = null): mixed
     {
-//        foreach ($headers as $key => $value) {
-//            switch ($key) {
-//                //CT stands for Content-Type
-//                case 'CT':
-//                    switch ($value) {
-//                        case 'text/h':
-//                            header('Content-Type: text/html');
-//                            break;
-//                        case 'text/p':
-//                            header('Content-Type: text/plain');
-//                            break;
-//                        case 'json':
-//                            header('Content-Type: application/json');
-//                            $this->content = json_encode($this->content, JSON_THROW_ON_ERROR, 512);
-//                            break;
-//                    }
-//                break;
-//                //XBP stands for X-Powered-By
-//                case 'XBP':
-//                    switch ($value) {
-//                        case 'hazhir':
-//                            header('X-Powered-By: Hazhir');
-//                            break;
-//
-//                    }
-//                break;
-//            }
-//        }
+        // foreach ($headers as $key => $value) {
+        //     switch ($key) {
+        //        //CT stands for Content-Type
+        //         case 'CT':
+        //             switch ($value) {
+        //                 case 'text/h':
+        //                    header('Content-Type: text/html');
+        //                    break;
+        //                 case 'text/p':
+        //                    header('Content-Type: text/plain');
+        //                    break;
+        //                 case 'json':
+        //                    header('Content-Type: application/json');
+        //                    $this->content = json_encode($this->content, JSON_THROW_ON_ERROR, 512);
+        //                    break;
+        //            }
+        //         break;
+        //         //XBP stands for X-Powered-By
+        //         case 'XBP':
+        //             switch ($value) {
+        //                 case 'hazhir':
+        //                    header('X-Powered-By: Hazhir');
+        //                    break;
+        //             }
+        //         break;
+        //     }
+        // }
+
         http_response_code($this->statusCode);
-        print_r($this->content);
+        return $this->content;
+    }
+
+    public function json()
+    {
+        echo json_encode($this->send());
     }
 }

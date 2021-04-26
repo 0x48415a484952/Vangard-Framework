@@ -8,6 +8,7 @@ use Septillion\App\Models\User;
 use Septillion\Framework\Controller\Controller;
 use Septillion\Framework\Request\Request;
 use Septillion\Framework\Response\Response;
+use Septillion\App\Controllers\Route;
 
 class CategoryController extends Controller
 {
@@ -20,10 +21,10 @@ class CategoryController extends Controller
         // dd($user->getConnection());
         // $user->getConnection()->exec('insert into users (username, email) values (\'hazhir\', \'hazhir1811@gmail.com\')');
         // $user->getConnection()->commit();
-        $content = $user->getConnection()->query('select * from users')->rowCount();
+        $content = $user->getConnection()->query('select * from users')->fetchAll();
 
         $response = new Response($content);
-        $response->send();
+        $response->json();
         
     }
 
