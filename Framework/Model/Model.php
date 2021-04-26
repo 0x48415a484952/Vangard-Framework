@@ -8,7 +8,7 @@ use Septillion\Framework\Model\DatabaseConnection;
 
 class Model
 {
-    public function getConnection() : \PDO
+    protected function getConnection() : \PDO
     {
         return DatabaseConnection::getInstance()->getConnection();
     }

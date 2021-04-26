@@ -21,8 +21,8 @@ class CategoryController extends Controller
         // dd($user->getConnection());
         // $user->getConnection()->exec('insert into users (username, email) values (\'hazhir\', \'hazhir1811@gmail.com\')');
         // $user->getConnection()->commit();
-        $content = $user->getConnection()->query('select * from users')->fetchAll();
-
+        // $content = $user->getConnection()->query('select * from users')->fetchAll();
+        $content = $user->getUsers();
         $response = new Response($content);
         $response->json();
         
