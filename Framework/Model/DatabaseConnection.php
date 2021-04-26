@@ -6,22 +6,30 @@ namespace Septillion\Framework\Model;
 
 use PDO;
 use PDOException;
-use Septillion\App\Configs\DatabaseConfig;
 
-class DatabaseConnection extends DatabaseConfig
+class DatabaseConnection
 {
-    private PDO $_pdo;
-    protected static DatabaseConnection $instance;
-   
+    private PDO $pdo;
+    private static $instance;
+
     private function __construct()
     {
         try
         {
-            $this->_pdo = new PDO(
-                DatabaseConfig::DSN,
-                DatabaseConfig::USERNAME,
-                DatabaseConfig::PASSWORD,
-                DatabaseConfig::OPTIONS
+            
+            $databaseDsn = getenv('DATABASE_DSN');
+            $databaseUsername = getenv('DATABASE_USERNAME');
+            $databasePassword = getenv('DATABASE_PASSWORD');
+
+            $this->pdo = new PDO(
+                $databaseDsn,
+                $databaseUsername,
+                $databasePassword,
+                [
+                    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION, 
+                    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC, 
+                    PDO::ATTR_EMULATE_PREPARES => false
+                ]
             );
         }
         catch(PDOException $e)
@@ -40,7 +48,7 @@ class DatabaseConnection extends DatabaseConfig
 
     public function getConnection() : PDO
     {
-        return $this->_pdo;
+        return $this->pdo;
     }
 
     protected function __clone() 

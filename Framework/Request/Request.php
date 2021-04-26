@@ -10,7 +10,7 @@ use Septillion\Framework\Middleware\Middleware;
 class Request {
     //commented out just in time
 //    private static $_middleware;
-    private static $_instance;
+    private static $instance;
     public string $uri;
     public array $uriParts = [];
     public AssociativeArray $params;
@@ -39,17 +39,17 @@ class Request {
 
     public static function getInstance() : self
     {
-        if (!self::$_instance) {
-            self::$_instance = new Request();
+        if (!self::$instance) {
+            self::$instance = new Request();
 
             //commented out just in time
 //            self::$_middleware = new Middleware();
-//            self::$_middleware->run(self::$_instance);
+//            self::$_middleware->run(self::$instance);
         }
 
         //commented out just in time
-//        self::$_middleware->run(self::$_instance);
+//        self::$_middleware->run(self::$instance);
 
-        return self::$_instance;
+        return self::$instance;
     }
 }

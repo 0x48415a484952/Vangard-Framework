@@ -8,7 +8,7 @@ use RuntimeException;
 use Septillion\App\Configs\ControllerConfig;
 use Septillion\Framework\Request\Request;
 
-class Controller extends ControllerConfig
+class Controller
 {
     private static Controller $controllerObject;
     private static string $controllerAction;
@@ -23,14 +23,20 @@ class Controller extends ControllerConfig
 
     private static function checkController(string $controller) : bool
     {       
-        if (!preg_match(ControllerConfig::CONTROLLER_REGEX, $controller)) {
-            $controllerName = ControllerConfig::USERS_CONTROLLER_NAMESPACE.$controller;
+        $controllerPath = getenv('CONTROLLERS_PATH');
+        $controllerRegex = getenv('CONTROLLERS_REGEX');
+        // if (!preg_match(ControllerConfig::CONTROLLER_REGEX, $controller)) {
+        if (!preg_match($controllerRegex, $controller)) {
+            // $controllerName = ControllerConfig::USERS_CONTROLLER_NAMESPACE.$controller;
+            
+            $controllerName = $controllerPath.$controller;
             self::$controllerObject = new $controllerName();
             return false;
         }
 
         $explodedController = explode('@', $controller);
-        $controllerName = ControllerConfig::USERS_CONTROLLER_NAMESPACE.$explodedController[0];
+        // $controllerName = ControllerConfig::USERS_CONTROLLER_NAMESPACE.$explodedController[0];
+        $controllerName = $controllerPath.$explodedController[0];
         self::$controllerObject = new $controllerName();
         self::$controllerAction = $explodedController[1];
         return true;

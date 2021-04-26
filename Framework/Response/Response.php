@@ -9,7 +9,7 @@ class Response
     public const HTTP_OK = 200;
     public const HTTP_CREATED = 201;
     public const HTTP_ACCEPTED = 202;
-    public const HTTP_NO_CONTENT = 204;
+    public const HTTP_NOCONTENT = 204;
     public const HTTP_MOVED_PERMANENTLY = 301;
     public const HTTP_SEE_OTHER = 303;
     public const HTTP_NOT_MODIFIED = 304;
@@ -24,18 +24,18 @@ class Response
     public const HTTP_INTERNAL_SERVER_ERROR = 500;
     public const HTTP_NOT_IMPLEMENTED = 501;
 
-    private ?string $_content;
-    private int $_statusCode;
+    private $content;
+    private int $statusCode;
 
-    public function __construct(?string $content, ?int $status = null)
+    public function __construct($content = null, ?int $status = null)
     {
-        $this->_content = $content;
-        $this->_statusCode = $status ?? self::HTTP_OK;
+        $this->content = $content;
+        $this->statusCode = $status ?? self::HTTP_OK;
     }
 
-    public function add(string $content): void
+    public function add($content): void
     {
-        $this->_content .= $content;
+        $this->content .= $content;
     }
 
     public function send(?array $headers = null): void
@@ -53,7 +53,7 @@ class Response
 //                            break;
 //                        case 'json':
 //                            header('Content-Type: application/json');
-//                            $this->_content = json_encode($this->_content, JSON_THROW_ON_ERROR, 512);
+//                            $this->content = json_encode($this->content, JSON_THROW_ON_ERROR, 512);
 //                            break;
 //                    }
 //                break;
@@ -68,7 +68,7 @@ class Response
 //                break;
 //            }
 //        }
-        http_response_code($this->_statusCode);
-        echo $this->_content;
+        http_response_code($this->statusCode);
+        print_r($this->content);
     }
 }
