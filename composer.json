@@ -4,9 +4,10 @@
     "description": "A Simple Framework",
     "license": "MIT",
     "require": {
-        "php": ">=7.4.2",
+        "php": ">=8.0.3",
         "ext-pdo": "*",
-        "ext-json": "*"
+        "ext-json": "*",
+        "ext-ctype": "*"
     },
     "config": {
         "optimize-autoloader": true
