@@ -1,7 +1,7 @@
 ![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)
 ![GitHub license](https://img.shields.io/badge/license-MIT-blueviolet)
 
-# Septillion
+# Vangard-Framework
 
 this is a PHP framework based on OOP architecture with a very simple base code that everyone could understand it in no time!
 
@@ -10,9 +10,9 @@ this is a PHP framework based on OOP architecture with a very simple base code t
 
 1. first you need to install composer
 
-2. enter "composer require hazhir/septillion" 
+2. enter "composer require hazhir/vangard-framework" 
 
-3. cd Septillon
+3. cd vangard-framework
 
 4. php -S 127.0.0.1:8000 -t App/Routes/
 
